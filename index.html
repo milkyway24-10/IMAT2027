@@ -3,677 +3,347 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IMAT 2027 — Curso Completo de Preparación</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<title>IMAT 2027 — Curso Completo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --black: #0a0a08;
-    --deep: #111210;
-    --card: #161714;
-    --border: #222420;
-    --green: #4a7c59;
-    --green-light: #6aab7d;
-    --green-pale: #b8d4be;
-    --cream: #f0e8d4;
-    --cream-muted: #c8bda8;
-    --gold: #c9a84c;
-    --text: #ddd5c4;
-    --muted: #7a7060;
-    --white: #ffffff;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--black);
-    color: var(--text);
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 17px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-
-  /* ── NOISE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    text-align: center;
-    padding: 80px 24px 60px;
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -120px; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 400px;
-    background: radial-gradient(ellipse at center, rgba(74,124,89,0.18) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-eyebrow {
-    font-family: 'Crimson Pro', serif;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--green-light);
-    margin-bottom: 20px;
-  }
-
-  .hero h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.4rem, 6vw, 4.5rem);
-    font-weight: 900;
-    color: var(--cream);
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--green-light);
-  }
-
-  .hero-sub {
-    font-size: 18px;
-    color: var(--cream-muted);
-    max-width: 560px;
-    margin: 0 auto 40px;
-    font-style: italic;
-  }
-
-  .hero-badges {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .badge {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 40px;
-    padding: 6px 16px;
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: var(--green-pale);
-    font-family: 'Crimson Pro', serif;
-  }
-
-  /* ── NAV TABS ── */
-  .nav-tabs {
-    display: flex;
-    gap: 0;
-    padding: 0 24px;
-    border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-    scrollbar-width: none;
-    background: var(--deep);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  .nav-tabs::-webkit-scrollbar { display: none; }
-
-  .tab-btn {
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    color: var(--muted);
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-    padding: 16px 20px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.25s;
-  }
-
-  .tab-btn:hover { color: var(--cream-muted); }
-  .tab-btn.active {
-    color: var(--green-light);
-    border-bottom-color: var(--green-light);
-  }
-
-  /* ── SECTIONS ── */
-  .section { display: none; padding: 40px 24px 80px; max-width: 900px; margin: 0 auto; }
-  .section.active { display: block; }
-
-  /* ── SECTION TITLE ── */
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: var(--cream);
-    margin-bottom: 8px;
-  }
-
-  .section-title span { color: var(--green-light); font-style: italic; }
-
-  .section-lead {
-    color: var(--cream-muted);
-    font-style: italic;
-    margin-bottom: 36px;
-    font-size: 16px;
-  }
-
-  /* ── CARDS ── */
-  .card {
-    background: var(--white);
-    color: #1a1a1a;
-    border-radius: 12px;
-    padding: 28px 28px 24px;
-    margin-bottom: 20px;
-  }
-
-  .card-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 16px;
-  }
-
-  .card-icon {
-    width: 40px; height: 40px;
-    background: var(--black);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-
-  .card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    color: #111;
-    font-weight: 700;
-  }
-
-  .card h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-    margin-top: 14px;
-  }
-
-  .card p, .card li {
-    font-size: 15px;
-    line-height: 1.65;
-    color: #333;
-  }
-
-  .card ul, .card ol { padding-left: 20px; }
-  .card li { margin-bottom: 4px; }
-
-  /* ── DARK CARD ── */
-  .card-dark {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 20px;
-  }
-
-  .card-dark h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    color: var(--cream);
-    margin-bottom: 12px;
-  }
-
-  .card-dark p, .card-dark li {
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.65;
-  }
-
-  .card-dark ul { padding-left: 20px; }
-  .card-dark li { margin-bottom: 4px; }
-
-  /* ── EXAM OVERVIEW ── */
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 14px;
-    margin-bottom: 28px;
-  }
-
-  .stat-box {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 16px;
-    text-align: center;
-  }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--green-light);
-    display: block;
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .stat-label {
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* ── SUBJECT PILLS ── */
-  .pill-row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 16px 0;
-  }
-
-  .pill {
-    border-radius: 30px;
-    padding: 5px 14px;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Crimson Pro', serif;
-  }
-
-  .pill-green { background: rgba(74,124,89,0.2); color: var(--green-light); border: 1px solid rgba(74,124,89,0.4); }
-  .pill-gold { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.35); }
-  .pill-cream { background: rgba(240,232,212,0.1); color: var(--cream); border: 1px solid rgba(240,232,212,0.25); }
-
-  /* ── SCORE TABLE ── */
-  .score-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-    font-size: 14px;
-  }
-
-  .score-table th {
-    background: #f4f0e8;
-    color: #333;
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    padding: 10px 14px;
-    text-align: left;
-    border-bottom: 2px solid #d4cec4;
-  }
-
-  .score-table td {
-    padding: 9px 14px;
-    border-bottom: 1px solid #e8e4dc;
-    color: #333;
-  }
-
-  .score-table tr:last-child td { border-bottom: none; }
-
-  .score-table .num {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    color: #2d6e3e;
-  }
-
-  /* ── TOPICS ACCORDION ── */
-  .topic-group {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 14px;
-    overflow: hidden;
-  }
-
-  .topic-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 22px;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.2s;
-  }
-
-  .topic-header:hover { background: rgba(255,255,255,0.03); }
-
-  .topic-emoji { font-size: 22px; }
-
-  .topic-title {
-    font-family: 'Playfair Display', serif;
-    color: var(--cream);
-    font-size: 1.05rem;
-    flex: 1;
-  }
-
-  .topic-count {
-    font-size: 12px;
-    color: var(--green-light);
-    background: rgba(74,124,89,0.15);
-    border-radius: 20px;
-    padding: 3px 10px;
-  }
-
-  .topic-arrow {
-    color: var(--muted);
-    font-size: 12px;
-    transition: transform 0.25s;
-  }
-
-  .topic-header.open .topic-arrow { transform: rotate(180deg); }
-
-  .topic-body {
-    display: none;
-    padding: 0 22px 20px;
-  }
-
-  .topic-body.open { display: block; }
-
-  .topic-body ul {
-    list-style: none;
-    padding: 0;
-    columns: 2;
-    column-gap: 20px;
-  }
-
-  @media (max-width: 600px) {
-    .topic-body ul { columns: 1; }
-  }
-
-  .topic-body li {
-    font-size: 14px;
-    color: var(--text);
-    padding: 4px 0 4px 18px;
-    position: relative;
-    break-inside: avoid;
-  }
-
-  .topic-body li::before {
-    content: '◆';
-    position: absolute;
-    left: 0;
-    color: var(--green);
-    font-size: 8px;
-    top: 7px;
-  }
-
-  /* ── TIMELINE ── */
-  .timeline { position: relative; padding-left: 30px; }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 8px; top: 8px; bottom: 8px;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--green), var(--border));
-  }
-
-  .timeline-item {
-    position: relative;
-    margin-bottom: 28px;
-  }
-
-  .timeline-dot {
-    position: absolute;
-    left: -26px; top: 6px;
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: var(--green);
-    border: 2px solid var(--black);
-    box-shadow: 0 0 0 3px rgba(74,124,89,0.25);
-  }
-
-  .timeline-month {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--green-light);
-    margin-bottom: 6px;
-  }
-
-  .timeline-card {
-    background: var(--white);
-    border-radius: 10px;
-    padding: 18px 22px;
-    color: #1a1a1a;
-  }
-
-  .timeline-card h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: #111;
-    margin-bottom: 8px;
-    font-weight: 700;
-  }
-
-  .timeline-card p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #444;
-    margin-bottom: 6px;
-  }
-
-  .timeline-card ul {
-    padding-left: 18px;
-    font-size: 14px;
-    color: #444;
-  }
-
-  .timeline-card li { margin-bottom: 3px; }
-
-  .phase-tag {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    font-weight: 700;
-  }
-
-  .phase-1 { background: #e8f4eb; color: #2d6e3e; }
-  .phase-2 { background: #fdf3e0; color: #a06c00; }
-  .phase-3 { background: #e8e4f4; color: #4a3d8f; }
-  .phase-4 { background: #fde8e8; color: #8f1a1a; }
-
-  /* ── STRATEGY ── */
-  .strategy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-
-  /* ── RESOURCES ── */
-  .resource-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    background: var(--white);
-    border-radius: 10px;
-    padding: 18px 20px;
-    margin-bottom: 14px;
-  }
-
-  .resource-icon {
-    font-size: 24px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .resource-name {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    color: #111;
-    font-size: 0.95rem;
-    margin-bottom: 4px;
-  }
-
-  .resource-desc {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.55;
-  }
-
-  .resource-link {
-    font-size: 13px;
-    color: #2d6e3e;
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .resource-link:hover { text-decoration: underline; }
-
-  /* ── DIVIDER ── */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 32px 0;
-  }
-
-  /* ── TIP BOX ── */
-  .tip-box {
-    background: rgba(74,124,89,0.12);
-    border: 1px solid rgba(74,124,89,0.3);
-    border-left: 4px solid var(--green-light);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 20px 0;
-  }
-
-  .tip-box p {
-    color: var(--green-pale);
-    font-size: 15px;
-    line-height: 1.6;
-  }
-
-  .tip-box strong { color: var(--green-light); }
-
-  /* ── WARNING BOX ── */
-  .warn-box {
-    background: rgba(201,168,76,0.1);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-left: 4px solid var(--gold);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 20px 0;
-  }
-
-  .warn-box p { color: #d4b96a; font-size: 15px; line-height: 1.6; }
-
-  /* ── PROGRESS BAR ── */
-  .prog-row { margin-bottom: 14px; }
-  .prog-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--cream-muted); margin-bottom: 5px; }
-  .prog-bar { background: var(--border); border-radius: 4px; height: 6px; overflow: hidden; }
-  .prog-fill { height: 100%; border-radius: 4px; background: linear-gradient(to right, var(--green), var(--green-light)); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .section.active { animation: fadeUp 0.35s ease both; }
-
-  /* ── FOOTER ── */
-  .footer {
-    text-align: center;
-    padding: 40px 24px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 13px;
-    font-style: italic;
-  }
-
-  .footer strong { color: var(--green-light); }
+:root {
+  --black:#0a0a08;--deep:#111210;--card:#161714;--border:#222420;
+  --green:#4a7c59;--green-light:#6aab7d;--green-pale:#b8d4be;
+  --cream:#f0e8d4;--cream-muted:#c8bda8;--gold:#c9a84c;
+  --text:#ddd5c4;--muted:#7a7060;--white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--black);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:17px;line-height:1.7;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+
+/* ── PROFILE SCREEN ── */
+#profile-screen{position:fixed;inset:0;background:var(--black);z-index:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;padding:24px;}
+#profile-screen h1{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--cream);text-align:center;}
+#profile-screen h1 em{color:var(--green-light);font-style:italic;}
+#profile-screen p{color:var(--cream-muted);font-style:italic;text-align:center;font-size:16px;}
+.profile-cards{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:8px;}
+.profile-card{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:32px 40px;cursor:pointer;text-align:center;transition:all 0.25s;min-width:180px;}
+.profile-card:hover{border-color:var(--green-light);transform:translateY(-4px);}
+.profile-card .p-emoji{font-size:48px;display:block;margin-bottom:12px;}
+.profile-card .p-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);display:block;margin-bottom:4px;}
+.profile-card .p-sub{font-size:13px;color:var(--muted);}
+.profile-new{border-style:dashed;}
+.profile-new input{background:var(--deep);border:1px solid var(--border);border-radius:8px;color:var(--cream);font-family:'Crimson Pro',serif;font-size:16px;padding:8px 14px;width:100%;margin-top:8px;outline:none;}
+.profile-new input:focus{border-color:var(--green-light);}
+.btn-create{background:var(--green);color:white;border:none;border-radius:8px;padding:10px 24px;font-family:'Playfair Display',serif;font-size:15px;cursor:pointer;margin-top:10px;width:100%;transition:background 0.2s;}
+.btn-create:hover{background:var(--green-light);}
+.profile-badge{position:fixed;top:12px;right:16px;background:var(--card);border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;color:var(--green-light);cursor:pointer;z-index:500;display:none;}
+.profile-badge:hover{border-color:var(--green-light);}
+
+/* ── HERO ── */
+.hero{position:relative;text-align:center;padding:70px 24px 50px;border-bottom:1px solid var(--border);overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse at center,rgba(74,124,89,0.18) 0%,transparent 70%);pointer-events:none;}
+.hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--green-light);margin-bottom:16px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);font-weight:900;color:var(--cream);line-height:1.1;margin-bottom:12px;}
+.hero h1 em{font-style:italic;color:var(--green-light);}
+.hero-sub{font-size:17px;color:var(--cream-muted);max-width:520px;margin:0 auto 32px;font-style:italic;}
+.hero-badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.badge{background:var(--card);border:1px solid var(--border);border-radius:40px;padding:5px 14px;font-size:12px;letter-spacing:1px;color:var(--green-pale);}
+
+/* ── NAV ── */
+.nav-tabs{display:flex;gap:0;padding:0 16px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;background:var(--deep);position:sticky;top:0;z-index:100;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.tab-btn{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'Playfair Display',serif;font-size:12px;letter-spacing:0.5px;padding:14px 16px;cursor:pointer;white-space:nowrap;transition:all 0.25s;}
+.tab-btn:hover{color:var(--cream-muted);}
+.tab-btn.active{color:var(--green-light);border-bottom-color:var(--green-light);}
+
+/* ── SECTIONS ── */
+.section{display:none;padding:36px 24px 80px;max-width:900px;margin:0 auto;}
+.section.active{display:block;animation:fadeUp 0.3s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.section-title{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--cream);margin-bottom:6px;}
+.section-title span{color:var(--green-light);font-style:italic;}
+.section-lead{color:var(--cream-muted);font-style:italic;margin-bottom:28px;font-size:15px;}
+
+/* ── CARDS ── */
+.card{background:var(--white);color:#1a1a1a;border-radius:12px;padding:24px 26px;margin-bottom:18px;}
+.card-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.card-icon{width:38px;height:38px;background:var(--black);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#111;font-weight:700;}
+.card h4{font-family:'Playfair Display',serif;font-size:0.95rem;color:#1a1a1a;margin-bottom:6px;margin-top:12px;}
+.card p,.card li{font-size:15px;line-height:1.6;color:#333;}
+.card ul,.card ol{padding-left:18px;}
+.card li{margin-bottom:3px;}
+.card-dark{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:18px;}
+.card-dark h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--cream);margin-bottom:10px;}
+.card-dark p,.card-dark li{color:var(--text);font-size:15px;line-height:1.6;}
+.card-dark ul{padding-left:18px;}
+.card-dark li{margin-bottom:3px;}
+
+/* ── STATS ── */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:24px;}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 14px;text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--green-light);display:block;line-height:1;margin-bottom:5px;}
+.stat-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+
+/* ── SCORE TABLE ── */
+.score-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+.score-table th{background:#f4f0e8;color:#333;font-family:'Playfair Display',serif;font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid #d4cec4;}
+.score-table td{padding:8px 12px;border-bottom:1px solid #e8e4dc;color:#333;}
+.score-table tr:last-child td{border-bottom:none;}
+.score-table .num{font-family:'Playfair Display',serif;font-weight:700;color:#2d6e3e;}
+
+/* ── ACCORDION ── */
+.topic-group{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;}
+.topic-header{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none;transition:background 0.2s;}
+.topic-header:hover{background:rgba(255,255,255,0.03);}
+.topic-emoji{font-size:20px;}
+.topic-title{font-family:'Playfair Display',serif;color:var(--cream);font-size:1rem;flex:1;}
+.topic-count{font-size:11px;color:var(--green-light);background:rgba(74,124,89,0.15);border-radius:20px;padding:3px 9px;}
+.topic-arrow{color:var(--muted);font-size:11px;transition:transform 0.25s;}
+.topic-header.open .topic-arrow{transform:rotate(180deg);}
+.topic-body{display:none;padding:0 20px 18px;}
+.topic-body.open{display:block;}
+.topic-body ul{list-style:none;padding:0;columns:2;column-gap:18px;}
+@media(max-width:600px){.topic-body ul{columns:1;}}
+.topic-body li{font-size:13px;color:var(--text);padding:3px 0 3px 16px;position:relative;break-inside:avoid;}
+.topic-body li::before{content:'◆';position:absolute;left:0;color:var(--green);font-size:7px;top:6px;}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--green),var(--border));}
+.timeline-item{position:relative;margin-bottom:24px;}
+.timeline-dot{position:absolute;left:-24px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--green);border:2px solid var(--black);box-shadow:0 0 0 3px rgba(74,124,89,0.25);}
+.timeline-month{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--green-light);margin-bottom:5px;}
+.timeline-card{background:var(--white);border-radius:10px;padding:16px 20px;color:#1a1a1a;}
+.timeline-card h4{font-family:'Playfair Display',serif;font-size:0.95rem;color:#111;margin-bottom:6px;font-weight:700;}
+.timeline-card p{font-size:14px;line-height:1.55;color:#444;margin-bottom:5px;}
+.timeline-card ul{padding-left:16px;font-size:14px;color:#444;}
+.timeline-card li{margin-bottom:2px;}
+.phase-tag{display:inline-block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 9px;border-radius:20px;margin-bottom:8px;font-weight:700;}
+.phase-1{background:#e8f4eb;color:#2d6e3e;}
+.phase-2{background:#fdf3e0;color:#a06c00;}
+.phase-3{background:#e8e4f4;color:#4a3d8f;}
+.phase-4{background:#fde8e8;color:#8f1a1a;}
+
+/* ── MISC ── */
+.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
+.pill{border-radius:30px;padding:4px 12px;font-size:12px;font-weight:600;}
+.pill-green{background:rgba(74,124,89,0.2);color:var(--green-light);border:1px solid rgba(74,124,89,0.4);}
+.pill-gold{background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.35);}
+.pill-cream{background:rgba(240,232,212,0.1);color:var(--cream);border:1px solid rgba(240,232,212,0.25);}
+.divider{border:none;border-top:1px solid var(--border);margin:28px 0;}
+.tip-box{background:rgba(74,124,89,0.12);border:1px solid rgba(74,124,89,0.3);border-left:4px solid var(--green-light);border-radius:8px;padding:14px 18px;margin:18px 0;}
+.tip-box p{color:var(--green-pale);font-size:14px;line-height:1.6;}
+.tip-box strong{color:var(--green-light);}
+.warn-box{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-left:4px solid var(--gold);border-radius:8px;padding:14px 18px;margin:18px 0;}
+.warn-box p{color:#d4b96a;font-size:14px;line-height:1.6;}
+.prog-row{margin-bottom:12px;}
+.prog-label{display:flex;justify-content:space-between;font-size:13px;color:var(--cream-muted);margin-bottom:4px;}
+.prog-bar{background:var(--border);border-radius:4px;height:6px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:4px;background:linear-gradient(to right,var(--green),var(--green-light));}
+.strategy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-bottom:20px;}
+.resource-row{display:flex;align-items:flex-start;gap:14px;background:var(--white);border-radius:10px;padding:16px 18px;margin-bottom:12px;}
+.resource-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.resource-name{font-family:'Playfair Display',serif;font-weight:700;color:#111;font-size:0.9rem;margin-bottom:3px;}
+.resource-desc{font-size:13px;color:#555;line-height:1.5;}
+.resource-link{font-size:12px;color:#2d6e3e;text-decoration:none;font-weight:600;}
+.resource-link:hover{text-decoration:underline;}
+
+/* ══════════════════════════════════════
+   HERRAMIENTAS DE ESTUDIO
+══════════════════════════════════════ */
+
+/* ── CALCULADORA ── */
+.calc-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;max-width:480px;margin:0 auto 24px;}
+.calc-box h3{font-family:'Playfair Display',serif;color:var(--cream);font-size:1.2rem;margin-bottom:20px;text-align:center;}
+.calc-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.calc-row label{color:var(--cream-muted);font-size:14px;flex:1;}
+.calc-row input{width:70px;background:var(--deep);border:1px solid var(--border);border-radius:8px;color:var(--cream);font-family:'Playfair Display',serif;font-size:18px;padding:8px;text-align:center;outline:none;}
+.calc-row input:focus{border-color:var(--green-light);}
+.calc-result{background:var(--deep);border-radius:10px;padding:20px;text-align:center;margin-top:16px;}
+.calc-score{font-family:'Playfair Display',serif;font-size:3rem;color:var(--green-light);display:block;line-height:1;}
+.calc-label{color:var(--cream-muted);font-size:13px;margin-top:4px;display:block;}
+.calc-comment{color:var(--gold);font-style:italic;font-size:14px;margin-top:8px;display:block;}
+.btn-calc{background:var(--green);color:white;border:none;border-radius:9px;padding:12px 28px;font-family:'Playfair Display',serif;font-size:16px;cursor:pointer;width:100%;margin-top:16px;transition:background 0.2s;}
+.btn-calc:hover{background:var(--green-light);}
+
+/* ── TEMPORIZADOR ── */
+.timer-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:32px;text-align:center;max-width:400px;margin:0 auto 24px;}
+.timer-display{font-family:'Playfair Display',serif;font-size:5rem;color:var(--cream);line-height:1;margin:16px 0;}
+.timer-display.warning{color:var(--gold);}
+.timer-display.danger{color:#e05555;}
+.timer-label{color:var(--muted);font-size:13px;letter-spacing:2px;text-transform:uppercase;}
+.timer-progress{background:var(--border);border-radius:6px;height:8px;margin:20px 0;overflow:hidden;}
+.timer-bar{height:100%;border-radius:6px;background:linear-gradient(to right,var(--green),var(--green-light));transition:width 1s linear;}
+.timer-btns{display:flex;gap:10px;justify-content:center;margin-top:16px;}
+.btn-timer{border:none;border-radius:9px;padding:10px 22px;font-family:'Playfair Display',serif;font-size:14px;cursor:pointer;transition:all 0.2s;}
+.btn-start{background:var(--green);color:white;}
+.btn-start:hover{background:var(--green-light);}
+.btn-pause{background:var(--card);border:1px solid var(--green);color:var(--green-light);}
+.btn-pause:hover{background:rgba(74,124,89,0.15);}
+.btn-reset{background:var(--deep);border:1px solid var(--border);color:var(--muted);}
+.btn-reset:hover{color:var(--cream-muted);}
+.timer-sections{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px;}
+.timer-section-btn{background:var(--deep);border:1px solid var(--border);border-radius:8px;padding:8px 6px;font-size:11px;color:var(--cream-muted);cursor:pointer;transition:all 0.2s;text-align:center;}
+.timer-section-btn:hover{border-color:var(--green-light);color:var(--green-light);}
+
+/* ── FLASHCARDS ── */
+.flash-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.flash-filter{background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--cream);font-family:'Crimson Pro',serif;font-size:14px;padding:7px 12px;outline:none;cursor:pointer;}
+.flash-counter{font-size:13px;color:var(--muted);}
+.flashcard-wrap{perspective:1000px;margin-bottom:20px;}
+.flashcard{width:100%;min-height:220px;position:relative;transform-style:preserve-3d;transition:transform 0.5s;cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:28px;text-align:center;}
+.card-front{background:var(--white);color:#111;}
+.card-back{background:var(--green);color:white;transform:rotateY(180deg);}
+.card-front .face-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.card-back .face-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:12px;}
+.card-front .face-text{font-family:'Playfair Display',serif;font-size:1.3rem;color:#111;line-height:1.4;}
+.card-back .face-text{font-size:15px;color:white;line-height:1.6;}
+.card-hint{font-size:12px;color:var(--muted);margin-top:8px;}
+.flash-nav{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;}
+.btn-flash{border:none;border-radius:9px;padding:10px 20px;font-family:'Playfair Display',serif;font-size:14px;cursor:pointer;transition:all 0.2s;}
+.btn-prev,.btn-next{background:var(--card);border:1px solid var(--border);color:var(--cream);}
+.btn-prev:hover,.btn-next:hover{border-color:var(--green-light);color:var(--green-light);}
+.btn-knew{background:#2d6e3e;color:white;}
+.btn-knew:hover{background:#3d8e50;}
+.btn-review{background:#8f4a1a;color:white;}
+.btn-review:hover{background:#b05a20;}
+.flash-stats{display:flex;gap:16px;margin-top:14px;justify-content:center;}
+.flash-stat{text-align:center;}
+.flash-stat-num{font-family:'Playfair Display',serif;font-size:1.4rem;display:block;}
+.flash-stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.knew-num{color:var(--green-light);}
+.review-num{color:var(--gold);}
+
+/* ── QUIZ ── */
+.quiz-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+.quiz-prog{flex:1;max-width:200px;}
+.quiz-score-display{font-family:'Playfair Display',serif;color:var(--green-light);font-size:1.1rem;}
+.quiz-question{background:var(--white);border-radius:14px;padding:24px;margin-bottom:14px;}
+.quiz-q-num{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.quiz-q-text{font-family:'Playfair Display',serif;font-size:1.1rem;color:#111;line-height:1.5;margin-bottom:18px;}
+.quiz-options{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{background:#f8f6f0;border:2px solid #e8e4dc;border-radius:9px;padding:12px 16px;cursor:pointer;font-size:14px;color:#333;transition:all 0.2s;text-align:left;}
+.quiz-opt:hover:not(.answered){background:#eef7f1;border-color:#6aab7d;}
+.quiz-opt.correct{background:#e8f4eb;border-color:#2d6e3e;color:#1a4a28;}
+.quiz-opt.wrong{background:#fde8e8;border-color:#8f1a1a;color:#8f1a1a;}
+.quiz-opt.show-correct{background:#e8f4eb;border-color:#2d6e3e;color:#1a4a28;}
+.quiz-explanation{background:#f0f8f3;border-left:4px solid #2d6e3e;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:12px;font-size:14px;color:#333;display:none;}
+.quiz-explanation.show{display:block;}
+.btn-quiz{border:none;border-radius:9px;padding:11px 24px;font-family:'Playfair Display',serif;font-size:15px;cursor:pointer;transition:all 0.2s;margin-top:6px;}
+.btn-next-q{background:var(--green);color:white;display:none;}
+.btn-next-q:hover{background:var(--green-light);}
+.btn-next-q.show{display:inline-block;}
+.quiz-result{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:32px;text-align:center;display:none;}
+.quiz-result.show{display:block;}
+.quiz-result-score{font-family:'Playfair Display',serif;font-size:4rem;color:var(--green-light);display:block;}
+.quiz-result-msg{color:var(--cream-muted);font-style:italic;font-size:16px;margin:10px 0 20px;}
+.btn-restart{background:var(--green);color:white;border:none;border-radius:9px;padding:12px 28px;font-family:'Playfair Display',serif;font-size:15px;cursor:pointer;}
+.btn-restart:hover{background:var(--green-light);}
+
+/* ── CHECKLIST ── */
+.checklist-month{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;}
+.checklist-month-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;}
+.checklist-month-title{font-family:'Playfair Display',serif;color:var(--cream);font-size:0.95rem;}
+.checklist-month-prog{font-size:12px;color:var(--green-light);}
+.checklist-month-bar{height:3px;background:var(--border);}
+.checklist-month-fill{height:100%;background:var(--green-light);transition:width 0.3s;}
+.checklist-items{padding:6px 18px 14px;}
+.check-item{display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.check-item:last-child{border-bottom:none;}
+.check-item input[type=checkbox]{width:18px;height:18px;accent-color:var(--green-light);cursor:pointer;flex-shrink:0;margin-top:2px;}
+.check-item label{font-size:14px;color:var(--text);cursor:pointer;line-height:1.5;}
+.check-item.done label{text-decoration:line-through;color:var(--muted);}
+
+/* ── TRACKER ── */
+.tracker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:20px;}
+.tracker-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all 0.2s;position:relative;}
+.tracker-item:hover{border-color:var(--green);}
+.tracker-item.done{background:rgba(74,124,89,0.15);border-color:var(--green);}
+.tracker-item.in-progress{background:rgba(201,168,76,0.1);border-color:var(--gold);}
+.tracker-emoji{font-size:20px;display:block;margin-bottom:6px;}
+.tracker-name{font-size:13px;color:var(--cream);display:block;margin-bottom:4px;font-family:'Playfair Display',serif;}
+.tracker-status{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.tracker-item.done .tracker-status{color:var(--green-light);}
+.tracker-item.in-progress .tracker-status{color:var(--gold);}
+.tracker-check{position:absolute;top:10px;right:10px;font-size:14px;display:none;}
+.tracker-item.done .tracker-check{display:block;}
+.tracker-summary{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;}
+.tracker-summary h3{font-family:'Playfair Display',serif;color:var(--cream);margin-bottom:14px;}
+.tracker-big-prog{background:var(--border);border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;}
+.tracker-big-fill{height:100%;border-radius:8px;background:linear-gradient(to right,var(--green),var(--green-light));transition:width 0.4s;}
+.tracker-pct{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--green-light);}
+.tracker-cycle{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.btn-tracker-cycle{background:var(--deep);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--muted);cursor:pointer;}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:36px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;font-style:italic;}
+.footer strong{color:var(--green-light);}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-eyebrow">Guía Completa · Estudiante Non-EU · México</div>
-  <h1>Preparación <em>IMAT</em> 2027</h1>
-  <p class="hero-sub">Medicina en la Università Politecnica delle Marche, Ancona — desde cero hasta el examen</p>
-  <div class="hero-badges">
-    <span class="badge">📅 Mayo 2026 — Septiembre 2027</span>
-    <span class="badge">🇮🇹 Ancona, Italia</span>
-    <span class="badge">📖 100% Gratuito</span>
-    <span class="badge">🇲🇽 Mexicana Non-EU</span>
+<!-- ═══ PANTALLA DE PERFIL ═══ -->
+<div id="profile-screen">
+  <h1>Bienvenida al<br><em>IMAT 2027</em></h1>
+  <p>¿Quién está estudiando hoy?</p>
+  <div class="profile-cards" id="profile-cards-container"></div>
+  <div class="profile-card profile-new" id="new-profile-card" style="min-width:200px">
+    <span class="p-emoji">✨</span>
+    <span class="p-name">Nuevo perfil</span>
+    <input type="text" id="new-profile-name" placeholder="Tu nombre..." maxlength="20">
+    <button class="btn-create" onclick="createProfile()">Crear perfil</button>
   </div>
 </div>
 
-<!-- NAV -->
-<nav class="nav-tabs">
-  <button class="tab-btn active" onclick="showTab('examen')">Estructura del Examen</button>
-  <button class="tab-btn" onclick="showTab('temas')">Temario Completo</button>
-  <button class="tab-btn" onclick="showTab('plan')">Plan de Estudio</button>
-  <button class="tab-btn" onclick="showTab('estrategia')">Estrategia del Día</button>
-  <button class="tab-btn" onclick="showTab('recursos')">Recursos Gratuitos</button>
-  <button class="tab-btn" onclick="showTab('non-eu')">Non-EU: Pasos Legales</button>
+<!-- BADGE usuario activo -->
+<div class="profile-badge" id="profile-badge" onclick="showProfileScreen()">👤 <span id="badge-name"></span> · Cambiar</div>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero" id="main-app" style="display:none">
+  <div class="hero-eyebrow">Guía Completa · Estudiante Non-EU · México</div>
+  <h1>Preparación <em>IMAT</em> 2027</h1>
+  <p class="hero-sub">Medicina en Ancona · UNIVPM · Tu plataforma de estudio personal</p>
+  <div class="hero-badges">
+    <span class="badge">📅 Mayo 2026 — Sept 2027</span>
+    <span class="badge">🇮🇹 Ancona, Italia</span>
+    <span class="badge">📖 100% Gratuito</span>
+    <span class="badge" id="hero-user-badge">👤 —</span>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav-tabs" id="main-nav" style="display:none">
+  <button class="tab-btn active" onclick="showTab('examen')">📊 Examen</button>
+  <button class="tab-btn" onclick="showTab('temas')">📖 Temario</button>
+  <button class="tab-btn" onclick="showTab('plan')">📅 Plan</button>
+  <button class="tab-btn" onclick="showTab('flashcards')">🃏 Flashcards</button>
+  <button class="tab-btn" onclick="showTab('quiz')">✅ Quiz</button>
+  <button class="tab-btn" onclick="showTab('simulacro')">⏱️ Simulacro</button>
+  <button class="tab-btn" onclick="showTab('tracker')">📈 Progreso</button>
+  <button class="tab-btn" onclick="showTab('checklist')">☑️ Checklist</button>
+  <button class="tab-btn" onclick="showTab('calculadora')">🧮 Puntaje</button>
+  <button class="tab-btn" onclick="showTab('estrategia')">🎯 Estrategia</button>
+  <button class="tab-btn" onclick="showTab('recursos')">🔗 Recursos</button>
+  <button class="tab-btn" onclick="showTab('noneu')">🇲🇽 Non-EU</button>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECCIÓN 1: ESTRUCTURA DEL EXAMEN -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══════════ SECCIONES ═══════════ -->
+
+<!-- EXAMEN -->
 <section id="examen" class="section active">
   <h2 class="section-title">Estructura del <span>IMAT</span></h2>
   <p class="section-lead">International Medical Admissions Test — el único examen para entrar a Medicina en inglés en Italia.</p>
-
   <div class="stat-grid">
-    <div class="stat-box">
-      <span class="stat-num">60</span>
-      <span class="stat-label">Preguntas</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-num">100</span>
-      <span class="stat-label">Minutos</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-num">+1.5</span>
-      <span class="stat-label">Resp. correcta</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-num">−0.4</span>
-      <span class="stat-label">Resp. incorrecta</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-num">0</span>
-      <span class="stat-label">No respuesta</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-num">Sept.</span>
-      <span class="stat-label">Fecha aprox.</span>
-    </div>
+    <div class="stat-box"><span class="stat-num">60</span><span class="stat-label">Preguntas</span></div>
+    <div class="stat-box"><span class="stat-num">100</span><span class="stat-label">Minutos</span></div>
+    <div class="stat-box"><span class="stat-num">+1.5</span><span class="stat-label">Correcta</span></div>
+    <div class="stat-box"><span class="stat-num">−0.4</span><span class="stat-label">Incorrecta</span></div>
+    <div class="stat-box"><span class="stat-num">0</span><span class="stat-label">En blanco</span></div>
+    <div class="stat-box"><span class="stat-num">Sept.</span><span class="stat-label">Fecha</span></div>
   </div>
-
   <div class="card">
-    <div class="card-header">
-      <div class="card-icon">📊</div>
-      <h3>Distribución de preguntas por sección</h3>
-    </div>
+    <div class="card-header"><div class="card-icon">📊</div><h3>Distribución por sección</h3></div>
     <table class="score-table">
-      <thead>
-        <tr>
-          <th>Sección</th>
-          <th>Preguntas</th>
-          <th>Puntos máx.</th>
-          <th>Peso</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Sección</th><th>Preguntas</th><th>Pts máx.</th><th>Peso</th></tr></thead>
       <tbody>
         <tr><td>🧠 Razonamiento Lógico</td><td class="num">10</td><td class="num">15</td><td>17%</td></tr>
         <tr><td>🌍 Cultura General</td><td class="num">12</td><td class="num">18</td><td>20%</td></tr>
@@ -684,936 +354,779 @@
       </tbody>
     </table>
   </div>
-
   <div class="card">
-    <div class="card-header">
-      <div class="card-icon">⚡</div>
-      <h3>Sistema de puntuación</h3>
-    </div>
-    <p>El puntaje máximo es <strong>90 puntos</strong>. La puntuación mínima histórica para entrar a Ancona (UNIVPM) para candidatos non-EU ha rondado entre <strong>32 y 45 puntos</strong>, pero varía cada año según la demanda.</p>
-    <h4>Estrategia matemática de respuestas:</h4>
+    <div class="card-header"><div class="card-icon">⚡</div><h3>Sistema de puntuación</h3></div>
+    <p>Puntaje máximo: <strong>90 puntos</strong>. Puntaje histórico para entrar a Ancona (non-EU): entre <strong>32 y 45 pts</strong>.</p>
+    <h4>Regla de oro:</h4>
     <ul>
-      <li>Responder todo correcto: 90 puntos</li>
-      <li>Dejar en blanco es <strong>siempre mejor</strong> que adivinar al azar (probabilidad de ganar: 20%; de perder: 80%)</li>
-      <li>Solo responde si tienes ≥ 50% de certeza</li>
-      <li>Punto de equilibrio: responde si puedes eliminar <strong>al menos 2 opciones</strong> de 5</li>
+      <li>Solo responde si puedes eliminar al menos <strong>2 opciones de 5</strong></li>
+      <li>Dejar en blanco siempre es mejor que adivinar al azar</li>
+      <li>Punto de equilibrio: probabilidad de acertar ≥ 50%</li>
     </ul>
   </div>
-
   <div class="card-dark">
-    <h3>📅 Línea de tiempo del proceso 2027</h3>
+    <h3>📅 Línea de tiempo 2027 para Non-EU</h3>
     <ul>
-      <li><strong>Enero–Marzo 2027:</strong> MIUR publica el bando oficial — revisa universitaly.it</li>
-      <li><strong>Marzo–Mayo 2027:</strong> Período de preinscripción en Universitaly</li>
-      <li><strong>Junio–Julio 2027:</strong> Legalización de documentos / apostilla</li>
-      <li><strong>Septiembre 2027:</strong> Examen IMAT (usualmente primer jueves de septiembre)</li>
+      <li><strong>Ene–Mar 2027:</strong> MIUR publica el bando oficial</li>
+      <li><strong>Mar–May 2027:</strong> Preinscripción en Universitaly</li>
+      <li><strong>Jun–Jul 2027:</strong> Legalización de documentos / apostilla</li>
+      <li><strong>Septiembre 2027:</strong> Examen IMAT (primer jueves de sept.)</li>
       <li><strong>Octubre 2027:</strong> Publicación de resultados y ranking</li>
-      <li><strong>Noviembre–Dic 2027:</strong> Visa de estudiante y trámites de llegada</li>
+      <li><strong>Nov–Dic 2027:</strong> Visa de estudiante y llegada a Italia</li>
     </ul>
-  </div>
-
-  <div class="warn-box">
-    <p>⚠️ <strong>Para non-EU:</strong> Los cupos son separados. Ancona (UNIVPM) reserva plazas específicas para estudiantes internacionales. Número exacto varía cada año — consulta el bando oficial cuando se publique.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECCIÓN 2: TEMARIO COMPLETO -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- TEMARIO -->
 <section id="temas" class="section">
   <h2 class="section-title">Temario <span>Completo</span></h2>
-  <p class="section-lead">Basado en el syllabus oficial del MIUR. Cada tema es examinable — ninguno es opcional.</p>
-
-  <div class="prog-row"><div class="prog-label"><span>🧬 Biología</span><span>30% del examen</span></div><div class="prog-bar"><div class="prog-fill" style="width:30%"></div></div></div>
-  <div class="prog-row"><div class="prog-label"><span>🌍 Cultura General</span><span>20% del examen</span></div><div class="prog-bar"><div class="prog-fill" style="width:20%"></div></div></div>
-  <div class="prog-row"><div class="prog-label"><span>⚗️ Química</span><span>20% del examen</span></div><div class="prog-bar"><div class="prog-fill" style="width:20%"></div></div></div>
-  <div class="prog-row"><div class="prog-label"><span>🧠 Razonamiento Lógico</span><span>17% del examen</span></div><div class="prog-bar"><div class="prog-fill" style="width:17%"></div></div></div>
-  <div class="prog-row"><div class="prog-label"><span>📐 Física y Matemáticas</span><span>13% del examen</span></div><div class="prog-bar"><div class="prog-fill" style="width:13%"></div></div></div>
-
+  <p class="section-lead">Basado en el syllabus oficial del MIUR. Haz clic en cada materia para expandir.</p>
+  <div class="prog-row"><div class="prog-label"><span>🧬 Biología</span><span>30%</span></div><div class="prog-bar"><div class="prog-fill" style="width:30%"></div></div></div>
+  <div class="prog-row"><div class="prog-label"><span>🌍 Cultura General</span><span>20%</span></div><div class="prog-bar"><div class="prog-fill" style="width:20%"></div></div></div>
+  <div class="prog-row"><div class="prog-label"><span>⚗️ Química</span><span>20%</span></div><div class="prog-bar"><div class="prog-fill" style="width:20%"></div></div></div>
+  <div class="prog-row"><div class="prog-label"><span>🧠 Razonamiento</span><span>17%</span></div><div class="prog-bar"><div class="prog-fill" style="width:17%"></div></div></div>
+  <div class="prog-row"><div class="prog-label"><span>📐 Física y Mat.</span><span>13%</span></div><div class="prog-bar"><div class="prog-fill" style="width:13%"></div></div></div>
   <hr class="divider">
-
-  <!-- BIOLOGÍA -->
-  <div class="topic-group">
-    <div class="topic-header" onclick="toggleTopic(this)">
-      <span class="topic-emoji">🧬</span>
-      <span class="topic-title">Biología — 18 preguntas</span>
-      <span class="topic-count">40+ subtemas</span>
-      <span class="topic-arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <ul>
-        <li>La célula: estructura y función (procariota vs eucariota)</li>
-        <li>Membrana celular: composición, transporte activo y pasivo</li>
-        <li>Orgánulos celulares y sus funciones</li>
-        <li>Ciclo celular: mitosis y meiosis</li>
-        <li>Código genético y síntesis de proteínas</li>
-        <li>Replicación del ADN</li>
-        <li>Transcripción y traducción</li>
-        <li>ARN: tipos y funciones</li>
-        <li>Regulación génica en procariotas y eucariotas</li>
-        <li>Herencia mendeliana: leyes de Mendel</li>
-        <li>Herencia no mendeliana (codominancia, penetrancia)</li>
-        <li>Linked genes y crossing-over</li>
-        <li>Mutaciones: tipos y consecuencias</li>
-        <li>Biotecnología: PCR, electroforesis, clonación</li>
-        <li>Evolución: selección natural, deriva génica</li>
-        <li>Taxonomía y clasificación de seres vivos</li>
-        <li>Anatomía humana: sistema circulatorio</li>
-        <li>Sistema nervioso: neurona, sinapsis, SNC y SNP</li>
-        <li>Sistema endocrino: hormonas principales</li>
-        <li>Sistema digestivo: órganos y enzimas</li>
-        <li>Sistema respiratorio: mecánica de la ventilación</li>
-        <li>Sistema excretor: riñón y nefrona</li>
-        <li>Sistema inmune: inmunidad innata y adaptativa</li>
-        <li>Sistema muscular: contracción muscular</li>
-        <li>Sistema reproductor y embriología básica</li>
-        <li>Metabolismo energético: glucólisis</li>
-        <li>Ciclo de Krebs</li>
-        <li>Cadena de transporte de electrones</li>
-        <li>Fermentación láctica y alcohólica</li>
-        <li>Fotosíntesis: fase lumínica y ciclo de Calvin</li>
-        <li>Ecosistemas: cadenas y redes tróficas</li>
-        <li>Ciclos biogeoquímicos (carbono, nitrógeno)</li>
-        <li>Virus: estructura y ciclo de vida</li>
-        <li>Bacterias: reproducción y antibióticos</li>
-        <li>Hongos y protistas: características generales</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- QUÍMICA -->
-  <div class="topic-group">
-    <div class="topic-header" onclick="toggleTopic(this)">
-      <span class="topic-emoji">⚗️</span>
-      <span class="topic-title">Química — 12 preguntas</span>
-      <span class="topic-count">30+ subtemas</span>
-      <span class="topic-arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <ul>
-        <li>Estructura del átomo: protones, neutrones, electrones</li>
-        <li>Tabla periódica: grupos, períodos, tendencias</li>
-        <li>Configuración electrónica y orbitales</li>
-        <li>Enlace iónico, covalente y metálico</li>
-        <li>Geometría molecular: VSEPR</li>
-        <li>Polaridad molecular y fuerzas intermoleculares</li>
-        <li>Estequiometría: mol, masa molar, rendimiento</li>
-        <li>Soluciones: concentración (M, m, %p/v)</li>
-        <li>Equilibrio químico: constante Keq</li>
-        <li>Principio de Le Chatelier</li>
-        <li>Ácidos y bases: teorías de Arrhenius y Brønsted-Lowry</li>
-        <li>pH, pOH y cálculos de ácidos/bases débiles</li>
-        <li>Soluciones tampón</li>
-        <li>Reacciones de oxidación-reducción (redox)</li>
-        <li>Números de oxidación</li>
-        <li>Electroquímica: celdas galvánicas y electrolíticas</li>
-        <li>Cinética química: factores que afectan la velocidad</li>
-        <li>Termoquímica: entalpía, entropía, energía de Gibbs</li>
-        <li>Gases: leyes de Boyle, Charles, Gay-Lussac</li>
-        <li>Gas ideal y gas real</li>
-        <li>Química orgánica: alcanos, alquenos, alquinos</li>
-        <li>Grupos funcionales principales</li>
-        <li>Isomería (estructural, geométrica, óptica)</li>
-        <li>Reacciones de sustitución, adición, eliminación</li>
-        <li>Alcoholes, aldehídos, cetonas, ácidos carboxílicos</li>
-        <li>Aminas y amidas</li>
-        <li>Ésteres y saponificación</li>
-        <li>Biomoléculas: carbohidratos, lípidos, proteínas, ácidos nucleicos</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- FÍSICA -->
-  <div class="topic-group">
-    <div class="topic-header" onclick="toggleTopic(this)">
-      <span class="topic-emoji">⚡</span>
-      <span class="topic-title">Física — 4 preguntas</span>
-      <span class="topic-count">20+ subtemas</span>
-      <span class="topic-arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <ul>
-        <li>Cinemática: velocidad, aceleración, MRU y MRUA</li>
-        <li>Movimiento parabólico y circular</li>
-        <li>Dinámica: Leyes de Newton</li>
-        <li>Trabajo, energía cinética y potencial</li>
-        <li>Conservación de la energía mecánica</li>
-        <li>Cantidad de movimiento e impulso</li>
-        <li>Fuerzas: fricción, normal, tensión</li>
-        <li>Gravitación universal: ley de Newton</li>
-        <li>Fluidos: presión, principio de Pascal</li>
-        <li>Principio de Arquímedes</li>
-        <li>Termología: temperatura, calor, calor específico</li>
-        <li>Cambios de estado y calor latente</li>
-        <li>Termodinámica: principios I y II</li>
-        <li>Óptica: reflexión y refracción</li>
-        <li>Lentes y espejos</li>
-        <li>Electricidad: carga, campo eléctrico, potencial</li>
-        <li>Ley de Coulomb</li>
-        <li>Circuitos: ley de Ohm, resistencias en serie/paralelo</li>
-        <li>Magnetismo básico</li>
-        <li>Ondas: características, sonido, espectro electromagnético</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- MATEMÁTICAS -->
-  <div class="topic-group">
-    <div class="topic-header" onclick="toggleTopic(this)">
-      <span class="topic-emoji">📐</span>
-      <span class="topic-title">Matemáticas — 4 preguntas</span>
-      <span class="topic-count">20+ subtemas</span>
-      <span class="topic-arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <ul>
-        <li>Álgebra: polinomios, factorización</li>
-        <li>Ecuaciones e inecuaciones de 1° y 2° grado</li>
-        <li>Sistemas de ecuaciones lineales</li>
-        <li>Logaritmos y exponenciales</li>
-        <li>Funciones: dominio, rango, composición</li>
-        <li>Funciones trigonométricas: seno, coseno, tangente</li>
-        <li>Identidades trigonométricas</li>
-        <li>Geometría plana: áreas y perímetros</li>
-        <li>Geometría analítica: recta, parábola, circunferencia</li>
-        <li>Geometría del espacio: volúmenes</li>
-        <li>Probabilidad básica y combinatoria</li>
-        <li>Estadística descriptiva: media, mediana, desviación</li>
-        <li>Nociones básicas de límites y derivadas</li>
-        <li>Progressiones aritméticas y geométricas</li>
-        <li>Matrices y determinantes (noción básica)</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- RAZONAMIENTO LÓGICO -->
-  <div class="topic-group">
-    <div class="topic-header" onclick="toggleTopic(this)">
-      <span class="topic-emoji">🧠</span>
-      <span class="topic-title">Razonamiento Lógico — 10 preguntas</span>
-      <span class="topic-count">8 tipos de preguntas</span>
-      <span class="topic-arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <ul>
-        <li>Argumentos deductivos: conclusión válida / inválida</li>
-        <li>Identificar premisas ocultas</li>
-        <li>Debilitar o fortalecer un argumento</li>
-        <li>Lógica de proposiciones (si… entonces…)</li>
-        <li>Negaciones lógicas</li>
-        <li>Inferencias a partir de texto</li>
-        <li>Analizar datos cuantitativos sencillos</li>
-        <li>Series numéricas y patrones</li>
-        <li>Razonamiento espacial básico</li>
-        <li>Problemas de verdad/mentira y consistencia</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- CULTURA GENERAL -->
-  <div class="topic-group">
-    <div class="topic-header" onclick="toggleTopic(this)">
-      <span class="topic-emoji">🌍</span>
-      <span class="topic-title">Conocimiento General — 12 preguntas</span>
-      <span class="topic-count">Amplio alcance</span>
-      <span class="topic-arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <ul>
-        <li>Historia: siglos XIX–XXI (guerras mundiales, Guerra Fría)</li>
-        <li>Geografía política mundial</li>
-        <li>Organismos internacionales (ONU, OMS, UE)</li>
-        <li>Literatura italiana y mundial (premios Nobel)</li>
-        <li>Filosofía occidental (Platón a Nietzsche)</li>
-        <li>Arte y arquitectura: movimientos principales</li>
-        <li>Música clásica: compositores</li>
-        <li>Economía básica: conceptos macroeconómicos</li>
-        <li>Derecho y constitución italiana (conceptos básicos)</li>
-        <li>Ciencia y tecnología: descubrimientos recientes</li>
-        <li>Salud y medicina: noticias relevantes</li>
-        <li>Ética médica y bioética</li>
-        <li>Ambiente y cambio climático</li>
-        <li>Actualidad internacional</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="tip-box">
-    <p>💡 <strong>Tip de priorización:</strong> Biología y Química suman el 50% del examen. Si dominas estas dos materias al 90%, ya tienes una ventaja enorme. Razonamiento Lógico es el más entreneable en poco tiempo: practica 30 min diarios y verás mejora rápida.</p>
-  </div>
+  <div class="topic-group"><div class="topic-header" onclick="toggleTopic(this)"><span class="topic-emoji">🧬</span><span class="topic-title">Biología — 18 preguntas</span><span class="topic-count">35+ temas</span><span class="topic-arrow">▼</span></div><div class="topic-body"><ul><li>Célula: estructura procariota vs eucariota</li><li>Membrana celular: composición y transporte</li><li>Orgánulos celulares y sus funciones</li><li>Ciclo celular: mitosis y meiosis</li><li>ADN: estructura y replicación</li><li>Código genético</li><li>Transcripción y traducción</li><li>ARN: tipos y funciones</li><li>Regulación génica</li><li>Herencia mendeliana: leyes de Mendel</li><li>Herencia no mendeliana</li><li>Linked genes y crossing-over</li><li>Mutaciones: tipos y consecuencias</li><li>Biotecnología: PCR, electroforesis</li><li>Evolución: selección natural</li><li>Taxonomía y clasificación</li><li>Sistema circulatorio</li><li>Sistema nervioso y sinapsis</li><li>Sistema endocrino</li><li>Sistema digestivo</li><li>Sistema respiratorio</li><li>Sistema excretor y nefrona</li><li>Sistema inmune</li><li>Sistema muscular</li><li>Sistema reproductor</li><li>Glucólisis</li><li>Ciclo de Krebs</li><li>Cadena de transporte electrones</li><li>Fermentación láctica y alcohólica</li><li>Fotosíntesis: fase lumínica y ciclo Calvin</li><li>Ecosistemas y cadenas tróficas</li><li>Ciclos biogeoquímicos</li><li>Virus: estructura y ciclo</li><li>Bacterias y antibióticos</li><li>Hongos y protistas</li></ul></div></div>
+  <div class="topic-group"><div class="topic-header" onclick="toggleTopic(this)"><span class="topic-emoji">⚗️</span><span class="topic-title">Química — 12 preguntas</span><span class="topic-count">28+ temas</span><span class="topic-arrow">▼</span></div><div class="topic-body"><ul><li>Estructura atómica</li><li>Tabla periódica: grupos y tendencias</li><li>Configuración electrónica y orbitales</li><li>Enlace iónico, covalente, metálico</li><li>Geometría molecular: VSEPR</li><li>Polaridad y fuerzas intermoleculares</li><li>Estequiometría: mol y masa molar</li><li>Soluciones: concentración</li><li>Equilibrio químico: Keq</li><li>Principio de Le Chatelier</li><li>Ácidos y bases: Arrhenius y Brønsted</li><li>pH y pOH</li><li>Soluciones tampón</li><li>Reacciones redox</li><li>Números de oxidación</li><li>Electroquímica: celdas galvánicas</li><li>Cinética química</li><li>Termoquímica: entalpía y entropía</li><li>Leyes de gases ideales</li><li>Química orgánica: alcanos/alquenos/alquinos</li><li>Grupos funcionales</li><li>Isomería estructural y óptica</li><li>Reacciones de sustitución y adición</li><li>Alcoholes, aldehídos, cetonas</li><li>Ácidos carboxílicos y ésteres</li><li>Aminas y amidas</li><li>Saponificación</li><li>Biomoléculas: carbohidratos, lípidos, proteínas</li></ul></div></div>
+  <div class="topic-group"><div class="topic-header" onclick="toggleTopic(this)"><span class="topic-emoji">⚡</span><span class="topic-title">Física — 4 preguntas</span><span class="topic-count">20 temas</span><span class="topic-arrow">▼</span></div><div class="topic-body"><ul><li>Cinemática: MRU y MRUA</li><li>Movimiento parabólico y circular</li><li>Leyes de Newton</li><li>Trabajo, energía cinética y potencial</li><li>Conservación de energía mecánica</li><li>Cantidad de movimiento</li><li>Fuerzas: fricción, normal, tensión</li><li>Gravitación universal</li><li>Fluidos: presión y Pascal</li><li>Principio de Arquímedes</li><li>Temperatura, calor y calor específico</li><li>Cambios de estado y calor latente</li><li>Termodinámica: principios I y II</li><li>Óptica: reflexión y refracción</li><li>Lentes y espejos</li><li>Ley de Coulomb y campo eléctrico</li><li>Circuitos: Ley de Ohm</li><li>Magnetismo básico</li><li>Ondas: sonido y espectro EM</li><li>Radioactividad básica</li></ul></div></div>
+  <div class="topic-group"><div class="topic-header" onclick="toggleTopic(this)"><span class="topic-emoji">📐</span><span class="topic-title">Matemáticas — 4 preguntas</span><span class="topic-count">15 temas</span><span class="topic-arrow">▼</span></div><div class="topic-body"><ul><li>Álgebra: polinomios y factorización</li><li>Ecuaciones e inecuaciones 1° y 2°</li><li>Sistemas de ecuaciones lineales</li><li>Logaritmos y exponenciales</li><li>Funciones: dominio y rango</li><li>Trigonometría: seno, coseno, tangente</li><li>Identidades trigonométricas</li><li>Geometría plana: áreas y perímetros</li><li>Geometría analítica: recta y parábola</li><li>Geometría del espacio: volúmenes</li><li>Probabilidad básica y combinatoria</li><li>Estadística: media, mediana, desviación</li><li>Límites y derivadas (noción básica)</li><li>Progresiones aritméticas y geométricas</li><li>Matrices y determinantes</li></ul></div></div>
+  <div class="topic-group"><div class="topic-header" onclick="toggleTopic(this)"><span class="topic-emoji">🧠</span><span class="topic-title">Razonamiento Lógico — 10 preguntas</span><span class="topic-count">8 tipos</span><span class="topic-arrow">▼</span></div><div class="topic-body"><ul><li>Argumentos deductivos: conclusión válida/inválida</li><li>Identificar premisas ocultas</li><li>Debilitar o fortalecer un argumento</li><li>Lógica proposicional</li><li>Negaciones lógicas</li><li>Inferencias a partir de texto</li><li>Análisis de datos cuantitativos</li><li>Series numéricas y patrones</li></ul></div></div>
+  <div class="topic-group"><div class="topic-header" onclick="toggleTopic(this)"><span class="topic-emoji">🌍</span><span class="topic-title">Conocimiento General — 12 preguntas</span><span class="topic-count">Amplio alcance</span><span class="topic-arrow">▼</span></div><div class="topic-body"><ul><li>Historia: siglos XIX–XXI</li><li>Guerras mundiales y Guerra Fría</li><li>Geografía política mundial</li><li>Organismos internacionales (ONU, OMS, UE)</li><li>Literatura italiana y mundial</li><li>Filosofía occidental</li><li>Arte y arquitectura</li><li>Música clásica y compositores</li><li>Economía básica</li><li>Derecho y constitución italiana</li><li>Ciencia y tecnología reciente</li><li>Salud y medicina</li><li>Ética médica y bioética</li><li>Ambiente y cambio climático</li></ul></div></div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECCIÓN 3: PLAN DE ESTUDIO -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PLAN -->
 <section id="plan" class="section">
   <h2 class="section-title">Plan de Estudio <span>Mes a Mes</span></h2>
-  <p class="section-lead">17 meses de preparación sistemática · Mayo 2026 → Septiembre 2027</p>
-
-  <div class="card-dark" style="margin-bottom:28px">
-    <h3>🗂️ Las 4 Fases de Preparación</h3>
-    <div class="pill-row">
-      <span class="pill pill-green">Fase 1: Fundamentos (May–Ago 2026)</span>
-      <span class="pill pill-gold">Fase 2: Profundización (Sep–Dic 2026)</span>
-      <span class="pill pill-cream">Fase 3: Integración (Ene–May 2027)</span>
-      <span class="pill pill-green">Fase 4: Simulacros (Jun–Sep 2027)</span>
-    </div>
-  </div>
-
+  <p class="section-lead">17 meses · Mayo 2026 → Septiembre 2027 · 4 fases de preparación</p>
+  <div class="card-dark" style="margin-bottom:24px"><h3>Las 4 Fases</h3><div class="pill-row"><span class="pill pill-green">Fase 1: Fundamentos (May–Ago 2026)</span><span class="pill pill-gold">Fase 2: Profundización (Sep–Dic 2026)</span><span class="pill pill-cream">Fase 3: Integración (Ene–May 2027)</span><span class="pill pill-green">Fase 4: Simulacros (Jun–Sep 2027)</span></div></div>
   <div class="timeline">
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Mayo 2026 — Inicio</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-1">FASE 1 · FUNDAMENTOS</span>
-        <h4>Diagnóstico y organización</h4>
-        <p>Antes de estudiar, evalúa dónde estás. Descarga exámenes IMAT anteriores (2012–2024) y haz uno sin preparación. Eso define tus debilidades.</p>
-        <ul>
-          <li>Haz 1 examen diagnóstico completo</li>
-          <li>Configura Anki con decks IMAT de biología básica</li>
-          <li>Lee el syllabus oficial completo (MIUR)</li>
-          <li>Abre cuenta en Universitaly.it y Studenti.it</li>
-          <li>Comienza Biología celular: célula, membrana, orgánulos</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Junio 2026</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-1">FASE 1 · FUNDAMENTOS</span>
-        <h4>Biología I + Química I</h4>
-        <ul>
-          <li><strong>Bio:</strong> División celular (mitosis/meiosis), ADN, replicación</li>
-          <li><strong>Quím:</strong> Estructura atómica, tabla periódica, enlaces químicos</li>
-          <li><strong>Razonamiento:</strong> 20 min diarios de lógica verbal</li>
-          <li>Meta: 50 tarjetas Anki diarias</li>
-          <li>Recursos: Khan Academy (gratis), YouTube BBC Bio</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Julio 2026</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-1">FASE 1 · FUNDAMENTOS</span>
-        <h4>Biología II + Química II</h4>
-        <ul>
-          <li><strong>Bio:</strong> Genética mendeliana, síntesis de proteínas</li>
-          <li><strong>Quím:</strong> Estequiometría, soluciones, equilibrio químico</li>
-          <li><strong>Lógica:</strong> Argumentos deductivos + series</li>
-          <li>Primer mini-simulacro de 20 preguntas (Bio+Quím)</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Agosto 2026</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-1">FASE 1 · FUNDAMENTOS</span>
-        <h4>Fisiología humana + Química Orgánica I</h4>
-        <ul>
-          <li><strong>Bio:</strong> Sistemas circulatorio, nervioso, endocrino</li>
-          <li><strong>Quím:</strong> Ácidos/bases, pH, química orgánica básica</li>
-          <li><strong>Cultura:</strong> Historia siglo XX — 30 min/semana</li>
-          <li>Repaso de Fase 1 con ejercicios IMAT pasados</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Septiembre 2026</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-2">FASE 2 · PROFUNDIZACIÓN</span>
-        <h4>Biología avanzada + Física I</h4>
-        <ul>
-          <li><strong>Bio:</strong> Metabolismo (glucólisis, Krebs, cadena respiratoria)</li>
-          <li><strong>Física:</strong> Mecánica: cinemática, dinámica, trabajo y energía</li>
-          <li><strong>Quím:</strong> Redox y electroquímica</li>
-          <li>Simulacro completo #1 — registra tu puntaje</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Octubre 2026</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-2">FASE 2 · PROFUNDIZACIÓN</span>
-        <h4>Biología molecular + Física II + Matemáticas</h4>
-        <ul>
-          <li><strong>Bio:</strong> Biotecnología, evolución, inmunología</li>
-          <li><strong>Física:</strong> Fluidos, termodinámica, óptica</li>
-          <li><strong>Mat:</strong> Álgebra, funciones, trigonometría</li>
-          <li>Refuerza los temas débiles del simulacro #1</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Noviembre 2026</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-2">FASE 2 · PROFUNDIZACIÓN</span>
-        <h4>Química orgánica avanzada + Ecosistemas</h4>
-        <ul>
-          <li><strong>Quím:</strong> Grupos funcionales, isomería, reacciones orgánicas</li>
-          <li><strong>Bio:</strong> Ecología, fotosíntesis, virus y bacterias</li>
-          <li><strong>Cultura:</strong> Filosofía, arte, literatura — bloc de notas temático</li>
-          <li>Simulacro completo #2</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Diciembre 2026</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-2">FASE 2 · PROFUNDIZACIÓN</span>
-        <h4>Repaso general + Matemáticas avanzadas</h4>
-        <ul>
-          <li>Repaso sistemático de todos los temas de Fase 1 y 2</li>
-          <li><strong>Mat:</strong> Probabilidad, estadística, geometría analítica</li>
-          <li>Revisión de errores recurrentes en simulacros</li>
-          <li>Descanso navideño con repaso ligero (Anki mínimo)</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Enero 2027</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-3">FASE 3 · INTEGRACIÓN</span>
-        <h4>Simulacros semanales + Refuerzo selectivo</h4>
-        <ul>
-          <li>Un simulacro completo cada semana (60 preguntas, 100 min)</li>
-          <li>Análisis detallado de cada error</li>
-          <li>Repaso de Biología: anatomía + fisiología integrada</li>
-          <li>Cultura General: actualidad internacional, bioética</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Febrero 2027</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-3">FASE 3 · INTEGRACIÓN</span>
-        <h4>Química y Física bajo condiciones de examen</h4>
-        <ul>
-          <li>Practica solo con cronómetro: 12 min para Química (12 preg), 8 min para Física (4 preg)</li>
-          <li>Domina las preguntas de cálculo sin calculadora</li>
-          <li>Simulacros mixtos por sección: solo Química + solo Biología</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Marzo 2027</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-3">FASE 3 · INTEGRACIÓN</span>
-        <h4>Razonamiento Lógico intensivo</h4>
-        <ul>
-          <li>45 min diarios de lógica: The LNAT Companion, Cambridge BMAT books</li>
-          <li>Análisis de argumentos: identifica premisas y conclusiones</li>
-          <li>Practica preguntas de cultura general pasadas (IMAT 2012–2024)</li>
-          <li>Simulacro completo #5 + revisión profunda</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Abril 2027</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-3">FASE 3 · INTEGRACIÓN</span>
-        <h4>Repaso total + Trámites non-EU</h4>
-        <ul>
-          <li>Repaso express de TODOS los temas (fichas de 1 página por sección)</li>
-          <li>Verifica que tus documentos estén apostillados</li>
-          <li>Confirma preinscripción en Universitaly</li>
-          <li>Simulacros #6 y #7 — mide tu evolución</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Mayo 2027</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-3">FASE 3 · INTEGRACIÓN</span>
-        <h4>Velocidad y precisión</h4>
-        <ul>
-          <li>Cronometra sección por sección: desarrolla tu ritmo ideal</li>
-          <li>Practica la estrategia de "skip and return" para preguntas difíciles</li>
-          <li>Refuerza los 5 temas más débiles identificados en simulacros</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Junio 2027</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-4">FASE 4 · SIMULACROS</span>
-        <h4>Modo examen completo</h4>
-        <ul>
-          <li>2 simulacros completos por semana en condiciones reales</li>
-          <li>Solo repaso de contenido — nada nuevo</li>
-          <li>Revisa errores, no introduces materia nueva</li>
-          <li>Anki de mantenimiento: 30 tarjetas al día</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Julio 2027</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-4">FASE 4 · SIMULACROS</span>
-        <h4>Afinación y confianza</h4>
-        <ul>
-          <li>2 simulacros semanales + análisis detallado</li>
-          <li>Enfócate en elevar tu puntaje 2–3 puntos adicionales</li>
-          <li>Estudia errores recurrentes en Bio y Quím</li>
-          <li>Prepara logística: vuelo a Italia, alojamiento en Ancona</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Agosto 2027</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-4">FASE 4 · SIMULACROS</span>
-        <h4>Repaso final + logística</h4>
-        <ul>
-          <li>1 simulacro por semana — no sobrecargar</li>
-          <li>Repasa fichas y fórmulas clave</li>
-          <li>Practica razonamiento lógico diario (15 min)</li>
-          <li>Viaja a Italia con tiempo (llega antes del 28 de agosto)</li>
-          <li>Visita el campus de UNIVPM para familiarizarte</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot" style="background:var(--gold)"></div>
-      <div class="timeline-month">Septiembre 2027 — EXAMEN</div>
-      <div class="timeline-card">
-        <span class="phase-tag phase-4">DÍA CERO</span>
-        <h4>🏆 IMAT 2027</h4>
-        <p>Llegas preparada. 17 meses de trabajo sistemático. Confía en tu proceso.</p>
-        <ul>
-          <li>Semana previa: solo repaso ligero de fórmulas y fichas</li>
-          <li>Día anterior: descanso, buena comida, sin estudiar intenso</li>
-          <li>Día del examen: llega 30 min antes con documentos</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="tip-box" style="margin-top:28px">
-    <p>💡 <strong>Rutina diaria recomendada:</strong> Lunes–Sábado: 3–4 horas de estudio. Mañana: tema nuevo (90 min). Tarde: ejercicios y Anki (60 min). Noche: repaso rápido (30 min). Domingo: simulacro o descanso total.</p>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Mayo 2026</div><div class="timeline-card"><span class="phase-tag phase-1">FASE 1</span><h4>Diagnóstico y organización</h4><ul><li>Haz 1 examen diagnóstico completo sin preparación</li><li>Configura Anki con decks IMAT de biología</li><li>Lee el syllabus oficial completo (MIUR)</li><li>Biología celular: célula, membrana, orgánulos</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Junio 2026</div><div class="timeline-card"><span class="phase-tag phase-1">FASE 1</span><h4>Biología I + Química I</h4><ul><li>Bio: División celular, ADN, replicación</li><li>Quím: Átomo, tabla periódica, enlaces</li><li>Razonamiento: 20 min diarios de lógica</li><li>Meta: 50 tarjetas Anki diarias</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Julio 2026</div><div class="timeline-card"><span class="phase-tag phase-1">FASE 1</span><h4>Biología II + Química II</h4><ul><li>Bio: Genética mendeliana, síntesis proteínas</li><li>Quím: Estequiometría, soluciones, equilibrio</li><li>Primer mini-simulacro de 20 preguntas</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Agosto 2026</div><div class="timeline-card"><span class="phase-tag phase-1">FASE 1</span><h4>Fisiología humana + Química Orgánica I</h4><ul><li>Bio: Sistemas circulatorio, nervioso, endocrino</li><li>Quím: Ácidos/bases, pH, orgánica básica</li><li>Cultura: Historia siglo XX — 30 min/semana</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Septiembre 2026</div><div class="timeline-card"><span class="phase-tag phase-2">FASE 2</span><h4>Metabolismo + Física I</h4><ul><li>Bio: Glucólisis, Krebs, cadena respiratoria</li><li>Física: Mecánica, cinemática, energía</li><li>Simulacro completo #1</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Octubre 2026</div><div class="timeline-card"><span class="phase-tag phase-2">FASE 2</span><h4>Bio molecular + Física II + Matemáticas</h4><ul><li>Bio: Biotecnología, evolución, inmunología</li><li>Física: Fluidos, termodinámica, óptica</li><li>Mat: Álgebra, funciones, trigonometría</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Noviembre 2026</div><div class="timeline-card"><span class="phase-tag phase-2">FASE 2</span><h4>Química Orgánica avanzada + Ecosistemas</h4><ul><li>Quím: Grupos funcionales, isomería, reacciones</li><li>Bio: Ecología, fotosíntesis, virus y bacterias</li><li>Simulacro completo #2</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Diciembre 2026</div><div class="timeline-card"><span class="phase-tag phase-2">FASE 2</span><h4>Repaso general + Matemáticas avanzadas</h4><ul><li>Repaso sistemático de Fases 1 y 2</li><li>Mat: Probabilidad, estadística, geometría analítica</li><li>Revisión de errores recurrentes</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Enero–Mayo 2027</div><div class="timeline-card"><span class="phase-tag phase-3">FASE 3</span><h4>Simulacros semanales + Integración</h4><ul><li>Un simulacro completo cada semana</li><li>Análisis detallado de cada error</li><li>Razonamiento Lógico: 45 min diarios</li><li>Cultura General: actualidad y bioética</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Junio–Agosto 2027</div><div class="timeline-card"><span class="phase-tag phase-4">FASE 4</span><h4>Modo examen + Logística</h4><ul><li>2 simulacros completos por semana</li><li>Solo repaso — nada nuevo</li><li>Prepara viaje: vuelo, alojamiento en Ancona</li><li>Llega a Italia antes del 28 de agosto</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot" style="background:var(--gold)"></div><div class="timeline-month">Septiembre 2027</div><div class="timeline-card"><span class="phase-tag phase-4">DÍA CERO 🏆</span><h4>IMAT 2027</h4><p>17 meses de trabajo sistemático. Confía en tu proceso. ¡Tú puedes!</p></div></div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECCIÓN 4: ESTRATEGIA DEL DÍA -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section id="estrategia" class="section">
-  <h2 class="section-title">Estrategia del <span>Día del Examen</span></h2>
-  <p class="section-lead">100 minutos, 60 preguntas. Cada decisión cuenta.</p>
-
-  <div class="strategy-grid">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">🕰️</div>
-        <h3>Gestión del tiempo</h3>
+<!-- FLASHCARDS -->
+<section id="flashcards" class="section">
+  <h2 class="section-title">Flash<span>cards</span></h2>
+  <p class="section-lead">Haz clic en la tarjeta para voltearla. Marca si la sabías o necesitas repasar.</p>
+  <div class="flash-controls">
+    <select class="flash-filter" id="flash-filter" onchange="filterFlash()">
+      <option value="all">Todas las materias</option>
+      <option value="bio">🧬 Biología</option>
+      <option value="quim">⚗️ Química</option>
+      <option value="fis">⚡ Física</option>
+      <option value="log">🧠 Razonamiento</option>
+    </select>
+    <span class="flash-counter" id="flash-counter">Tarjeta 1 de 40</span>
+  </div>
+  <div class="flashcard-wrap">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="card-face card-front">
+        <span class="face-tag">PREGUNTA</span>
+        <span class="face-text" id="flash-q">Cargando...</span>
+        <span class="card-hint">Toca para ver la respuesta</span>
       </div>
-      <p>Reparte así tus 100 minutos:</p>
-      <table class="score-table" style="margin-top:10px">
-        <thead><tr><th>Sección</th><th>Tiempo</th></tr></thead>
-        <tbody>
-          <tr><td>Razonamiento Lógico (10)</td><td>15 min</td></tr>
-          <tr><td>Cultura General (12)</td><td>10 min</td></tr>
-          <tr><td>Biología (18)</td><td>30 min</td></tr>
-          <tr><td>Química (12)</td><td>20 min</td></tr>
-          <tr><td>Física + Matemáticas (8)</td><td>15 min</td></tr>
-          <tr><td>Revisión y transferencia</td><td>10 min</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">🎯</div>
-        <h3>Orden de ataque</h3>
+      <div class="card-face card-back">
+        <span class="face-tag">RESPUESTA</span>
+        <span class="face-text" id="flash-a">...</span>
       </div>
-      <ol>
-        <li><strong>Cultura General primero</strong> — rápida, no requiere cálculo</li>
-        <li><strong>Biología</strong> — tu sección más pesada, mientras fresca</li>
-        <li><strong>Razonamiento Lógico</strong> — requiere concentración activa</li>
-        <li><strong>Química</strong> — si hay cálculos, tómate el tiempo</li>
-        <li><strong>Física y Matemáticas</strong> — al final, son pocas preguntas</li>
-      </ol>
-      <p style="margin-top:10px;font-size:14px;color:#555">No tienes que seguir el orden del papel. Empieza donde más confías.</p>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon">🧮</div>
-      <h3>Regla de oro: ¿Respondo o dejo en blanco?</h3>
-    </div>
-    <p>Con penalización de −0.4 por error y +1.5 por acierto, la matemática es clara:</p>
-    <ul style="margin-top:10px">
-      <li><strong>Si puedes eliminar 2+ opciones de 5</strong> → responde (probabilidad a tu favor)</li>
-      <li><strong>Si no tienes ninguna pista</strong> → deja en blanco (0 &gt; −0.4)</li>
-      <li><strong>Nunca marques "por rellenar"</strong> — eso te baja el puntaje</li>
-      <li><strong>Marca en el cuadernillo primero</strong>, transfiere al optical sheet al final para evitar errores de fila</li>
-    </ul>
+  <div class="flash-nav">
+    <button class="btn-flash btn-prev" onclick="prevCard()">← Anterior</button>
+    <button class="btn-flash btn-review" onclick="markCard('review')">🔄 Repasar</button>
+    <button class="btn-flash btn-knew" onclick="markCard('knew')">✓ Lo sabía</button>
+    <button class="btn-flash btn-next" onclick="nextCard()">Siguiente →</button>
   </div>
-
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon">📋</div>
-      <h3>Técnica de 3 pasadas</h3>
-    </div>
-    <ol>
-      <li><strong>Pasada rápida (primera):</strong> Responde solo las preguntas que sabes con seguridad. Marca las dudosas con un símbolo.</li>
-      <li><strong>Pasada media (segunda):</strong> Regresa a las dudosas. Usa eliminación de opciones. Decide si respondes o dejas en blanco.</li>
-      <li><strong>Revisión final (tercera):</strong> Verifica que todas tus respuestas estén en la fila correcta del optical sheet. No cambies respuestas salvo error obvio.</li>
-    </ol>
+  <div class="flash-stats">
+    <div class="flash-stat"><span class="flash-stat-num knew-num" id="knew-count">0</span><span class="flash-stat-label">Lo sabía</span></div>
+    <div class="flash-stat"><span class="flash-stat-num review-num" id="review-count">0</span><span class="flash-stat-label">Repasar</span></div>
+    <div class="flash-stat"><span class="flash-stat-num" id="remaining-count" style="color:var(--cream-muted)">40</span><span class="flash-stat-label">Pendientes</span></div>
   </div>
+</section>
 
-  <div class="strategy-grid">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">🌙</div>
-        <h3>Noche anterior</h3>
-      </div>
-      <ul>
-        <li>NO estudies intensamente — solo repasa fichas</li>
-        <li>Prepara: pasaporte, confirmación de registro, lápiz 2B</li>
-        <li>Duerme mínimo 7–8 horas</li>
-        <li>Come bien (carbohidratos complejos)</li>
-        <li>Revisa la dirección exacta del centro de examen</li>
-      </ul>
+<!-- QUIZ -->
+<section id="quiz" class="section">
+  <h2 class="section-title"><span>Quiz</span> Estilo IMAT</h2>
+  <p class="section-lead">Preguntas de opción múltiple con retroalimentación inmediata.</p>
+  <div id="quiz-container">
+    <div class="quiz-header">
+      <div class="quiz-prog"><div class="prog-label"><span id="q-num">Pregunta 1/10</span></div><div class="prog-bar"><div class="prog-fill" id="quiz-prog-fill" style="width:10%"></div></div></div>
+      <span class="quiz-score-display">Puntos: <span id="quiz-pts">0</span></span>
     </div>
+    <div class="quiz-question">
+      <div class="quiz-q-num" id="quiz-subject">🧬 BIOLOGÍA</div>
+      <div class="quiz-q-text" id="quiz-q-text">Cargando pregunta...</div>
+      <div class="quiz-options" id="quiz-options"></div>
+      <div class="quiz-explanation" id="quiz-explanation"></div>
+    </div>
+    <button class="btn-quiz btn-next-q" id="btn-next-q" onclick="nextQuestion()">Siguiente pregunta →</button>
+  </div>
+  <div class="quiz-result" id="quiz-result">
+    <span class="quiz-result-score" id="quiz-final-score">0/10</span>
+    <span class="quiz-result-msg" id="quiz-result-msg">¡Sigue practicando!</span>
+    <br>
+    <button class="btn-restart" onclick="restartQuiz()">🔄 Repetir Quiz</button>
+  </div>
+</section>
 
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">🌅</div>
-        <h3>Mañana del examen</h3>
-      </div>
-      <ul>
-        <li>Desayuno nutritivo — nada con mucha azúcar</li>
-        <li>Llega <strong>30–45 minutos antes</strong></li>
-        <li>No hables de teoría con otros candidatos</li>
-        <li>Lleva agua y una barrita energética (para la espera)</li>
-        <li>Respira profundo: 17 meses te prepararon para esto</li>
-      </ul>
+<!-- SIMULACRO -->
+<section id="simulacro" class="section">
+  <h2 class="section-title">Temporizador de <span>Simulacro</span></h2>
+  <p class="section-lead">Practica en condiciones reales. 100 minutos, 60 preguntas.</p>
+  <div class="timer-box">
+    <div class="timer-label">TIEMPO RESTANTE</div>
+    <div class="timer-display" id="timer-display">1:40:00</div>
+    <div class="timer-progress"><div class="timer-bar" id="timer-bar" style="width:100%"></div></div>
+    <div class="timer-label" id="timer-status">Listo para comenzar</div>
+    <div class="timer-btns">
+      <button class="btn-timer btn-start" id="btn-start" onclick="startTimer()">▶ Iniciar</button>
+      <button class="btn-timer btn-pause" id="btn-pause" onclick="pauseTimer()" style="display:none">⏸ Pausar</button>
+      <button class="btn-timer btn-reset" onclick="resetTimer()">↺ Reiniciar</button>
     </div>
   </div>
-
   <div class="card-dark">
-    <h3>🚨 Errores críticos a evitar</h3>
-    <ul>
-      <li>❌ Marcar respuestas sin leer todas las opciones</li>
-      <li>❌ Gastar más de 3 min en una sola pregunta</li>
-      <li>❌ Transferir al optical sheet pregunta por pregunta (riesgo de saltarte una fila)</li>
-      <li>❌ Cambiar respuestas por nervios sin razón clara</li>
-      <li>❌ Llegar tarde (pierdes cupo si llegas después de iniciado el examen)</li>
-      <li>❌ Olvidar el documento de identidad válido</li>
-    </ul>
+    <h3>⏱️ Cronómetros por sección</h3>
+    <p style="font-size:14px;color:var(--cream-muted);margin-bottom:14px">Practica sección por sección con el tiempo ideal:</p>
+    <div class="timer-sections">
+      <div class="timer-section-btn" onclick="setTimer(15,'Razonamiento Lógico')">🧠 Razonamiento<br><strong>15 min</strong></div>
+      <div class="timer-section-btn" onclick="setTimer(10,'Cultura General')">🌍 Cultura General<br><strong>10 min</strong></div>
+      <div class="timer-section-btn" onclick="setTimer(30,'Biología')">🧬 Biología<br><strong>30 min</strong></div>
+      <div class="timer-section-btn" onclick="setTimer(20,'Química')">⚗️ Química<br><strong>20 min</strong></div>
+      <div class="timer-section-btn" onclick="setTimer(15,'Física y Matemáticas')">📐 Física + Mat.<br><strong>15 min</strong></div>
+      <div class="timer-section-btn" onclick="setTimer(100,'Simulacro Completo')">🎯 Completo<br><strong>100 min</strong></div>
+    </div>
+  </div>
+  <div class="tip-box"><p>💡 <strong>Tip:</strong> Usa el simulacro completo los fines de semana. Entre semana practica secciones individuales para trabajar velocidad y precisión.</p></div>
+</section>
+
+<!-- TRACKER -->
+<section id="tracker" class="section">
+  <h2 class="section-title">Mi <span>Progreso</span></h2>
+  <p class="section-lead">Haz clic en cada tema para cambiar su estado. Tu progreso se guarda automáticamente.</p>
+  <div class="tracker-summary">
+    <h3>Progreso general de <span id="tracker-user-name">—</span></h3>
+    <div class="tracker-big-prog"><div class="tracker-big-fill" id="tracker-big-fill" style="width:0%"></div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+      <span class="tracker-pct" id="tracker-pct">0%</span>
+      <span style="font-size:13px;color:var(--muted)" id="tracker-counts">0 completados · 0 en progreso</span>
+    </div>
+  </div>
+  <div class="tracker-grid" id="tracker-grid"></div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist" class="section">
+  <h2 class="section-title">Check<span>list</span> Mensual</h2>
+  <p class="section-lead">Marca cada tarea conforme la completes. Tu progreso se guarda por perfil.</p>
+  <div id="checklist-container"></div>
+</section>
+
+<!-- CALCULADORA -->
+<section id="calculadora" class="section">
+  <h2 class="section-title">Calculadora de <span>Puntaje</span></h2>
+  <p class="section-lead">Introduce tus respuestas de un simulacro y calcula tu puntaje IMAT real.</p>
+  <div class="calc-box">
+    <h3>🧮 Calculadora IMAT</h3>
+    <div class="calc-row"><label>✅ Respuestas correctas</label><input type="number" id="calc-correct" min="0" max="60" value="0" oninput="calcScore()"></div>
+    <div class="calc-row"><label>❌ Respuestas incorrectas</label><input type="number" id="calc-wrong" min="0" max="60" value="0" oninput="calcScore()"></div>
+    <div class="calc-row"><label>⬜ Dejadas en blanco</label><input type="number" id="calc-blank" min="0" max="60" value="60" oninput="calcScore()"></div>
+    <div class="calc-result">
+      <span class="calc-score" id="calc-score">0.0</span>
+      <span class="calc-label">puntos de 90 posibles</span>
+      <span class="calc-comment" id="calc-comment">Ingresa tus respuestas arriba</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📊</div><h3>Referencia histórica de puntajes IMAT</h3></div>
+    <table class="score-table">
+      <thead><tr><th>Puntaje</th><th>Interpretación</th></tr></thead>
+      <tbody>
+        <tr><td>&lt; 20 pts</td><td>Zona de riesgo — refuerza fundamentos</td></tr>
+        <tr><td>20–32 pts</td><td>Por debajo del corte histórico non-EU</td></tr>
+        <tr><td>32–45 pts</td><td>⚠️ Zona limítrofe — depende del año</td></tr>
+        <tr><td>45–60 pts</td><td>✅ Rango seguro para Ancona (non-EU)</td></tr>
+        <tr><td>&gt; 60 pts</td><td>🏆 Excelente — top candidatos</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:#777;margin-top:8px">*Puntajes históricos orientativos. El corte varía cada año.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECCIÓN 5: RECURSOS GRATUITOS -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ESTRATEGIA -->
+<section id="estrategia" class="section">
+  <h2 class="section-title">Estrategia del <span>Día</span></h2>
+  <p class="section-lead">100 minutos, 60 preguntas. Cada decisión cuenta.</p>
+  <div class="strategy-grid">
+    <div class="card"><div class="card-header"><div class="card-icon">🕰️</div><h3>Gestión del tiempo</h3></div><table class="score-table"><thead><tr><th>Sección</th><th>Tiempo</th></tr></thead><tbody><tr><td>Razonamiento Lógico</td><td>15 min</td></tr><tr><td>Cultura General</td><td>10 min</td></tr><tr><td>Biología</td><td>30 min</td></tr><tr><td>Química</td><td>20 min</td></tr><tr><td>Física + Matemáticas</td><td>15 min</td></tr><tr><td>Revisión final</td><td>10 min</td></tr></tbody></table></div>
+    <div class="card"><div class="card-header"><div class="card-icon">🎯</div><h3>Orden de ataque</h3></div><ol><li><strong>Cultura General</strong> — rápida, sin cálculo</li><li><strong>Biología</strong> — mientras estás fresca</li><li><strong>Razonamiento</strong> — concentración activa</li><li><strong>Química</strong> — tómate el tiempo</li><li><strong>Física y Mat.</strong> — al final, pocas preguntas</li></ol></div>
+  </div>
+  <div class="card"><div class="card-header"><div class="card-icon">🧮</div><h3>¿Respondo o dejo en blanco?</h3></div><ul><li><strong>Puedes eliminar 2+ opciones de 5</strong> → responde</li><li><strong>Sin ninguna pista</strong> → deja en blanco (0 > −0.4)</li><li><strong>Nunca marques "por rellenar"</strong></li><li><strong>Transfiere al optical sheet al final</strong> — no pregunta por pregunta</li></ul></div>
+  <div class="card"><div class="card-header"><div class="card-icon">📋</div><h3>Técnica de 3 pasadas</h3></div><ol><li><strong>Rápida:</strong> Solo preguntas que sabes con seguridad</li><li><strong>Media:</strong> Regresa a las dudosas — usa eliminación</li><li><strong>Revisión:</strong> Verifica que cada respuesta esté en la fila correcta</li></ol></div>
+  <div class="card-dark"><h3>🚨 Errores críticos a evitar</h3><ul><li>❌ Marcar sin leer todas las opciones</li><li>❌ Gastar más de 3 min en una pregunta</li><li>❌ Transferir al optical sheet pregunta por pregunta</li><li>❌ Cambiar respuestas por nervios</li><li>❌ Llegar tarde (pierdes el cupo)</li><li>❌ Olvidar el documento de identidad</li></ul></div>
+</section>
+
+<!-- RECURSOS -->
 <section id="recursos" class="section">
   <h2 class="section-title">Recursos <span>Gratuitos</span></h2>
-  <p class="section-lead">Todo lo que necesitas existe gratis. No necesitas pagar cursos costosos.</p>
-
-  <h3 style="font-family:'Playfair Display',serif;color:var(--cream);margin-bottom:16px">📝 Exámenes Oficiales Pasados</h3>
-
-  <div class="resource-row">
-    <span class="resource-icon">🇮🇹</span>
-    <div>
-      <div class="resource-name">Sitio Oficial MIUR / MUR</div>
-      <div class="resource-desc">Exámenes IMAT oficiales desde 2012, con respuestas. Es la fuente más importante — practica hasta dominarlos todos.</div>
-      <a class="resource-link" href="https://www.mur.gov.it" target="_blank">mur.gov.it →</a>
-    </div>
-  </div>
-
-  <div class="resource-row">
-    <span class="resource-icon">📚</span>
-    <div>
-      <div class="resource-name">Imat.io / IMATprep</div>
-      <div class="resource-desc">Banco de preguntas IMAT con explicaciones detalladas, clasificadas por año y tema. Gratuito en versión básica.</div>
-      <a class="resource-link" href="https://imat.io" target="_blank">imat.io →</a>
-    </div>
-  </div>
-
-  <div class="resource-row">
-    <span class="resource-icon">🎓</span>
-    <div>
-      <div class="resource-name">Reddit r/IMAT</div>
-      <div class="resource-desc">Comunidad activa de candidatos globales: comparten materiales, experiencias, rankings históricos y consejos de candidatos que ya entraron.</div>
-      <a class="resource-link" href="https://reddit.com/r/IMAT" target="_blank">reddit.com/r/IMAT →</a>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <h3 style="font-family:'Playfair Display',serif;color:var(--cream);margin-bottom:16px">🎬 Biología y Química — Video y Texto</h3>
-
-  <div class="resource-row">
-    <span class="resource-icon">🎥</span>
-    <div>
-      <div class="resource-name">Khan Academy (en inglés)</div>
-      <div class="resource-desc">Cubre el 90% del syllabus IMAT en Biología y Química. Completamente gratuito. Sigue la ruta: Biology → AP Biology → Chemistry → AP Chemistry.</div>
-      <a class="resource-link" href="https://khanacademy.org" target="_blank">khanacademy.org →</a>
-    </div>
-  </div>
-
-  <div class="resource-row">
-    <span class="resource-icon">▶️</span>
-    <div>
-      <div class="resource-name">Amoeba Sisters (YouTube)</div>
-      <div class="resource-desc">Animaciones claras de biología celular, genética, evolución. Perfectas para visualizar conceptos difíciles. Canal en inglés, muy bien explicado.</div>
-    </div>
-  </div>
-
-  <div class="resource-row">
-    <span class="resource-icon">▶️</span>
-    <div>
-      <div class="resource-name">CrashCourse Biology & Chemistry (YouTube)</div>
-      <div class="resource-desc">Videos cortos (10–15 min) de alta calidad sobre todos los temas del syllabus. Ideales para repasos rápidos y repaso visual.</div>
-    </div>
-  </div>
-
-  <div class="resource-row">
-    <span class="resource-icon">🔬</span>
-    <div>
-      <div class="resource-name">Bioninja (bioninja.com.au)</div>
-      <div class="resource-desc">Resúmenes perfectos del currículo IB Biology — muy alineado con el IMAT. Diagramas, notas y ejercicios por tema.</div>
-      <a class="resource-link" href="https://ib.bioninja.com.au" target="_blank">ib.bioninja.com.au →</a>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <h3 style="font-family:'Playfair Display',serif;color:var(--cream);margin-bottom:16px">🧠 Razonamiento Lógico</h3>
-
-  <div class="resource-row">
-    <span class="resource-icon">📖</span>
-    <div>
-      <div class="resource-name">BMAT Preparation Materials (Cambridge Assessment)</div>
-      <div class="resource-desc">El examen BMAT británico comparte estructura con el IMAT en razonamiento. Cambridge ofrece materiales gratuitos en su sitio oficial.</div>
-    </div>
-  </div>
-
-  <div class="resource-row">
-    <span class="resource-icon">🧩</span>
-    <div>
-      <div class="resource-name">Brilliant.org (versión gratuita)</div>
-      <div class="resource-desc">Problemas de lógica, matemáticas y razonamiento. La versión free cubre suficiente para el nivel IMAT.</div>
-      <a class="resource-link" href="https://brilliant.org" target="_blank">brilliant.org →</a>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <h3 style="font-family:'Playfair Display',serif;color:var(--cream);margin-bottom:16px">🃏 Memorización y Repaso</h3>
-
-  <div class="resource-row">
-    <span class="resource-icon">🃏</span>
-    <div>
-      <div class="resource-name">Anki + Decks IMAT gratuitos</div>
-      <div class="resource-desc">Descarga Anki gratis y busca en AnkiWeb "IMAT Biology", "IMAT Chemistry". Hay decks con miles de tarjetas ya hechas por candidatos anteriores. Úsalo diario.</div>
-      <a class="resource-link" href="https://apps.ankiweb.net" target="_blank">apps.ankiweb.net →</a>
-    </div>
-  </div>
-
-  <div class="resource-row">
-    <span class="resource-icon">📋</span>
-    <div>
-      <div class="resource-name">Notion / Google Docs — Tu propio resumen</div>
-      <div class="resource-desc">Crea fichas de 1 página por tema. Escribir los resúmenes tú misma es el mejor método de estudio activo. Compártelos con la comunidad de r/IMAT.</div>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <h3 style="font-family:'Playfair Display',serif;color:var(--cream);margin-bottom:16px">🌍 Cultura General</h3>
-
-  <div class="resource-row">
-    <span class="resource-icon">📰</span>
-    <div>
-      <div class="resource-name">BBC News + The Guardian (ciencia y cultura)</div>
-      <div class="resource-desc">Lee 15 min de noticias en inglés cada día. Enfócate en ciencia, salud, historia y geopolítica. La cultura general es impredecible — la amplitud ayuda más que la profundidad.</div>
-    </div>
-  </div>
-
-  <div class="resource-row">
-    <span class="resource-icon">🎙️</span>
-    <div>
-      <div class="resource-name">Podcasts: Stuff You Should Know / TED-Ed</div>
-      <div class="resource-desc">Complementan tu cultura general mientras vas en transporte. Gratuitos en Spotify y YouTube. TED-Ed tiene videos de historia, filosofía y ciencia perfectos para IMAT.</div>
-    </div>
-  </div>
-
-  <div class="tip-box">
-    <p>💡 <strong>Stack de estudio gratuito ideal:</strong> Anki (memorización) + Khan Academy (teoría) + exámenes IMAT pasados (práctica) + r/IMAT (comunidad). Con esto y constancia, no necesitas pagar ningún curso.</p>
-  </div>
+  <p class="section-lead">Todo lo que necesitas existe gratis.</p>
+  <div class="resource-row"><span class="resource-icon">🇮🇹</span><div><div class="resource-name">Sitio Oficial MUR — Exámenes pasados</div><div class="resource-desc">Exámenes IMAT oficiales desde 2012 con respuestas. La fuente más importante.</div><a class="resource-link" href="https://www.mur.gov.it" target="_blank">mur.gov.it →</a></div></div>
+  <div class="resource-row"><span class="resource-icon">📚</span><div><div class="resource-name">imat.io</div><div class="resource-desc">Banco de preguntas clasificadas por año y tema con explicaciones. Gratis en versión básica.</div><a class="resource-link" href="https://imat.io" target="_blank">imat.io →</a></div></div>
+  <div class="resource-row"><span class="resource-icon">🎓</span><div><div class="resource-name">Reddit r/IMAT</div><div class="resource-desc">Comunidad activa: materiales, rankings históricos y consejos de candidatos admitidos.</div><a class="resource-link" href="https://reddit.com/r/IMAT" target="_blank">reddit.com/r/IMAT →</a></div></div>
+  <div class="resource-row"><span class="resource-icon">🎥</span><div><div class="resource-name">Khan Academy</div><div class="resource-desc">Cubre el 90% del syllabus IMAT en Biología y Química. 100% gratuito.</div><a class="resource-link" href="https://khanacademy.org" target="_blank">khanacademy.org →</a></div></div>
+  <div class="resource-row"><span class="resource-icon">▶️</span><div><div class="resource-name">Amoeba Sisters + CrashCourse (YouTube)</div><div class="resource-desc">Animaciones de biología y videos cortos de química. Ideales para repasos visuales.</div></div></div>
+  <div class="resource-row"><span class="resource-icon">🔬</span><div><div class="resource-name">Bioninja</div><div class="resource-desc">Resúmenes perfectos de IB Biology — muy alineado con el IMAT.</div><a class="resource-link" href="https://ib.bioninja.com.au" target="_blank">ib.bioninja.com.au →</a></div></div>
+  <div class="resource-row"><span class="resource-icon">🃏</span><div><div class="resource-name">Anki + Decks IMAT gratuitos</div><div class="resource-desc">Busca "IMAT Biology" y "IMAT Chemistry" en AnkiWeb. Miles de tarjetas ya hechas.</div><a class="resource-link" href="https://apps.ankiweb.net" target="_blank">apps.ankiweb.net →</a></div></div>
+  <div class="resource-row"><span class="resource-icon">📰</span><div><div class="resource-name">BBC News + TED-Ed</div><div class="resource-desc">15 min de noticias en inglés al día. Para cultura general: ciencia, salud, historia.</div></div></div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECCIÓN 6: NON-EU -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section id="non-eu" class="section">
+<!-- NON-EU -->
+<section id="noneu" class="section">
   <h2 class="section-title">Non-EU: <span>Pasos Legales</span></h2>
-  <p class="section-lead">Como estudiante mexicana, el proceso tiene capas adicionales. Aquí está todo lo que necesitas hacer.</p>
-
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon">📄</div>
-      <h3>Documentos requeridos para estudiantes mexicanas</h3>
-    </div>
-    <ol>
-      <li><strong>Pasaporte vigente</strong> (con al menos 2 años de vigencia)</li>
-      <li><strong>Certificado de bachillerato</strong> — legalizado y apostillado en México</li>
-      <li><strong>Traducción jurada al italiano</strong> de todos los documentos (hecha por traductor certificado)</li>
-      <li><strong>Declaración de valor</strong> — emitida por la Embajada de Italia en México</li>
-      <li><strong>Diploma Supplement / equivalencia</strong> de tu preparatoria</li>
-      <li><strong>Comprobante de solvencia económica</strong> (para visa)</li>
-      <li><strong>Seguro médico</strong> con cobertura en Italia</li>
-    </ol>
-  </div>
-
+  <p class="section-lead">Como estudiante mexicana, el proceso tiene capas adicionales.</p>
+  <div class="card"><div class="card-header"><div class="card-icon">📄</div><h3>Documentos requeridos</h3></div><ol><li><strong>Pasaporte vigente</strong> (mínimo 2 años de vigencia)</li><li><strong>Certificado de bachillerato</strong> — apostillado en México</li><li><strong>Traducción jurada al italiano</strong> de todos los documentos</li><li><strong>Declaración de valor</strong> — Embajada de Italia en México</li><li><strong>Comprobante de solvencia económica</strong></li><li><strong>Seguro médico</strong> con cobertura en Italia</li></ol></div>
   <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Enero–Marzo 2027</div>
-      <div class="timeline-card">
-        <h4>Preinscripción en Universitaly</h4>
-        <p>Crea tu cuenta en <strong>universitaly.it</strong> y completa la preinscripción en el período indicado por el bando oficial 2027. Este paso es obligatorio para candidatos non-EU.</p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Marzo–Mayo 2027</div>
-      <div class="timeline-card">
-        <h4>Legalización de documentos en México</h4>
-        <ul>
-          <li>Apostilla de la Haya en tu certificado de bachillerato (SEP o Gobierno del Estado)</li>
-          <li>Traducción jurada al italiano</li>
-          <li>Tramita la <strong>Declaración de Valor</strong> en la Embajada de Italia en México (CDMX)</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Junio–Julio 2027</div>
-      <div class="timeline-card">
-        <h4>Registro oficial en UNIVPM</h4>
-        <p>Una vez publicado el bando definitivo, regístrate directamente en el portal de <strong>UNIVPM (Università Politecnica delle Marche)</strong> con tus documentos ya legalizados. Paga la cuota de inscripción al examen si aplica.</p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Agosto 2027</div>
-      <div class="timeline-card">
-        <h4>Visa de estudiante (Tipo D)</h4>
-        <p>Si quedas seleccionada después del IMAT, solicita la <strong>visa de largo plazo para estudio</strong> en el consulado/embajada de Italia más cercano. Necesitas:</p>
-        <ul>
-          <li>Carta de admisión de UNIVPM</li>
-          <li>Comprobante de alojamiento en Ancona</li>
-          <li>Solvencia económica (extracto bancario)</li>
-          <li>Formulario de solicitud de visa</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-month">Al llegar a Italia</div>
-      <div class="timeline-card">
-        <h4>Permesso di Soggiorno</h4>
-        <p>Dentro de los <strong>8 días hábiles</strong> de llegar a Italia, debes solicitar el <em>Permesso di Soggiorno per Studio</em> en la Questura (policía). UNIVPM tiene una oficina de orientación para estudiantes internacionales que te apoyará.</p>
-      </div>
-    </div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Enero–Marzo 2027</div><div class="timeline-card"><h4>Preinscripción en Universitaly</h4><p>Crea cuenta en <strong>universitaly.it</strong> y completa la preinscripción en el período del bando oficial 2027.</p></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Marzo–Mayo 2027</div><div class="timeline-card"><h4>Legalización en México</h4><ul><li>Apostilla de la Haya en tu certificado (SEP)</li><li>Traducción jurada al italiano</li><li>Declaración de Valor en Embajada de Italia (CDMX)</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Junio–Julio 2027</div><div class="timeline-card"><h4>Registro en UNIVPM</h4><p>Regístrate en el portal de UNIVPM con documentos legalizados.</p></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Agosto 2027</div><div class="timeline-card"><h4>Visa de estudiante Tipo D</h4><ul><li>Carta de admisión de UNIVPM</li><li>Comprobante de alojamiento en Ancona</li><li>Solvencia económica (extracto bancario)</li></ul></div></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-month">Al llegar a Italia</div><div class="timeline-card"><h4>Permesso di Soggiorno</h4><p>Dentro de los <strong>8 días hábiles</strong> de llegar, solicita el Permesso per Studio en la Questura.</p></div></div>
   </div>
-
-  <div class="card-dark" style="margin-top:24px">
-    <h3>🏥 Costos estimados (Ancona, 2027)</h3>
-    <ul>
-      <li><strong>Matrícula universitaria:</strong> ~1,500–3,500 €/año (varía según ingresos)</li>
-      <li><strong>Alojamiento:</strong> 400–600 €/mes (piso compartido)</li>
-      <li><strong>Alimentación:</strong> 200–300 €/mes</li>
-      <li><strong>Transporte:</strong> ~30–50 €/mes</li>
-      <li><strong>Total estimado:</strong> ~8,000–12,000 €/año</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon">🎓</div>
-      <h3>Becas para estudiantes non-EU en Italia</h3>
-    </div>
-    <ul>
-      <li><strong>DSU Marche / ERSU:</strong> Beca regional que cubre matrícula y/o alojamiento — aplica apenas seas admitida</li>
-      <li><strong>Becas del Gobierno Italiano (MAECI):</strong> Programa de becas para estudiantes latinoamericanos — revisa esteri.it</li>
-      <li><strong>Becas CONACYT / CONAHCYT:</strong> México ofrece apoyos para estudiar en el extranjero — verifica convocatorias 2027</li>
-      <li><strong>Beca UNIVPM:</strong> La propia universidad ofrece exenciones de matrícula por mérito académico</li>
-    </ul>
-  </div>
-
-  <div class="warn-box">
-    <p>⚠️ <strong>Importante:</strong> Los requisitos específicos para no-EU cambian cada año con el bando oficial. La información aquí es orientativa. Siempre verifica en el sitio oficial del MUR (mur.gov.it) y en universitaly.it cuando salga la convocatoria 2027.</p>
-  </div>
-
-  <div class="card-dark">
-    <h3>📞 Contactos clave</h3>
-    <ul>
-      <li><strong>UNIVPM Oficina Internacional:</strong> relazioni.internazionali@univpm.it</li>
-      <li><strong>Universitaly:</strong> universitaly.it (preinscripción non-EU)</li>
-      <li><strong>Embajada de Italia en México:</strong> ambasciata.messico@esteri.it</li>
-      <li><strong>Comunidad r/IMAT:</strong> Candidatos de Latinoamérica comparten su experiencia</li>
-    </ul>
-  </div>
+  <div class="card"><div class="card-header"><div class="card-icon">🎓</div><h3>Becas para mexicanas en Italia</h3></div><ul><li><strong>DSU Marche / ERSU:</strong> Beca regional — cubre matrícula y/o alojamiento</li><li><strong>Becas MAECI:</strong> Programa del gobierno italiano para latinoamericanos</li><li><strong>CONAHCYT:</strong> Apoyos mexicanos para estudiar en el extranjero</li><li><strong>Beca UNIVPM:</strong> Exenciones de matrícula por mérito</li></ul></div>
+  <div class="warn-box"><p>⚠️ Los requisitos cambian cada año con el bando oficial. Verifica siempre en <strong>mur.gov.it</strong> y <strong>universitaly.it</strong>.</p></div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <p>Preparación IMAT 2027 · <strong>Ancona, Università Politecnica delle Marche</strong><br>
-  Syllabus oficial MIUR · Actualizado Mayo 2026 · Diseñado para candidatas non-EU de México</p>
+<footer class="footer" id="main-footer" style="display:none">
+  <p>Preparación IMAT 2027 · <strong>Ancona, UNIVPM</strong> · Diseñado para candidatas non-EU de México</p>
 </footer>
 
 <script>
-  function showTab(id) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    event.target.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+// ═══════════════════════════════════════
+// PERFILES
+// ═══════════════════════════════════════
+let currentUser = null;
 
-  function toggleTopic(header) {
-    const body = header.nextElementSibling;
-    header.classList.toggle('open');
-    body.classList.toggle('open');
+function getProfiles(){return JSON.parse(localStorage.getItem('imat_profiles')||'[]');}
+function saveProfiles(p){localStorage.setItem('imat_profiles',JSON.stringify(p));}
+function getUserData(name){return JSON.parse(localStorage.getItem('imat_data_'+name)||'{}');}
+function saveUserData(name,data){localStorage.setItem('imat_data_'+name,JSON.stringify(data));}
+
+const EMOJIS=['🌿','⭐','🌸','🦋','🌙','🔥','💎','🌺'];
+
+function renderProfileCards(){
+  const profiles=getProfiles();
+  const container=document.getElementById('profile-cards-container');
+  container.innerHTML='';
+  profiles.forEach((p,i)=>{
+    const d=getUserData(p);
+    const pct=d.trackerDone?Math.round((d.trackerDone/(d.trackerTotal||40))*100):0;
+    const div=document.createElement('div');
+    div.className='profile-card';
+    div.innerHTML=`<span class="p-emoji">${EMOJIS[i%EMOJIS.length]}</span><span class="p-name">${p}</span><span class="p-sub">Progreso: ${pct}%</span>`;
+    div.onclick=()=>selectProfile(p);
+    container.appendChild(div);
+  });
+}
+
+function createProfile(){
+  const name=document.getElementById('new-profile-name').value.trim();
+  if(!name)return;
+  const profiles=getProfiles();
+  if(profiles.includes(name)){alert('Ese nombre ya existe.');return;}
+  profiles.push(name);
+  saveProfiles(profiles);
+  document.getElementById('new-profile-name').value='';
+  selectProfile(name);
+}
+
+function selectProfile(name){
+  currentUser=name;
+  document.getElementById('profile-screen').style.display='none';
+  document.getElementById('main-app').style.display='block';
+  document.getElementById('main-nav').style.display='flex';
+  document.getElementById('main-footer').style.display='block';
+  document.getElementById('profile-badge').style.display='block';
+  document.getElementById('badge-name').textContent=name;
+  document.getElementById('hero-user-badge').textContent='👤 '+name;
+  document.getElementById('tracker-user-name').textContent=name;
+  initAll();
+}
+
+function showProfileScreen(){
+  currentUser=null;
+  document.getElementById('profile-screen').style.display='flex';
+  document.getElementById('main-app').style.display='none';
+  document.getElementById('main-nav').style.display='none';
+  document.getElementById('main-footer').style.display='none';
+  document.getElementById('profile-badge').style.display='none';
+  renderProfileCards();
+}
+
+// ═══════════════════════════════════════
+// NAV
+// ═══════════════════════════════════════
+function showTab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleTopic(header){
+  header.classList.toggle('open');
+  header.nextElementSibling.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════
+// CALCULADORA
+// ═══════════════════════════════════════
+function calcScore(){
+  const c=parseInt(document.getElementById('calc-correct').value)||0;
+  const w=parseInt(document.getElementById('calc-wrong').value)||0;
+  const score=c*1.5 - w*0.4;
+  document.getElementById('calc-score').textContent=score.toFixed(1);
+  let comment='';
+  if(c+w===0)comment='Ingresa tus respuestas arriba';
+  else if(score<20)comment='Zona de riesgo — refuerza los fundamentos';
+  else if(score<32)comment='Por debajo del corte histórico — ¡sigue practicando!';
+  else if(score<45)comment='⚠️ Zona limítrofe — depende del año';
+  else if(score<60)comment='✅ Rango seguro para Ancona';
+  else comment='🏆 Excelente resultado';
+  document.getElementById('calc-comment').textContent=comment;
+  const blank=60-c-w;
+  if(blank>=0)document.getElementById('calc-blank').value=blank;
+}
+
+// ═══════════════════════════════════════
+// TEMPORIZADOR
+// ═══════════════════════════════════════
+let timerInterval=null;
+let timerSeconds=6000;
+let timerTotal=6000;
+let timerRunning=false;
+
+function formatTime(s){
+  const h=Math.floor(s/3600);
+  const m=Math.floor((s%3600)/60);
+  const sec=s%60;
+  if(h>0)return `${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+
+function updateTimerDisplay(){
+  const el=document.getElementById('timer-display');
+  el.textContent=formatTime(timerSeconds);
+  const pct=(timerSeconds/timerTotal)*100;
+  document.getElementById('timer-bar').style.width=pct+'%';
+  el.className='timer-display';
+  if(pct<20)el.classList.add('danger');
+  else if(pct<40)el.classList.add('warning');
+}
+
+function startTimer(){
+  if(timerRunning)return;
+  timerRunning=true;
+  document.getElementById('btn-start').style.display='none';
+  document.getElementById('btn-pause').style.display='inline-block';
+  document.getElementById('timer-status').textContent='⏱️ Simulacro en curso...';
+  timerInterval=setInterval(()=>{
+    timerSeconds--;
+    updateTimerDisplay();
+    if(timerSeconds<=0){
+      clearInterval(timerInterval);
+      timerRunning=false;
+      document.getElementById('timer-status').textContent='🔔 ¡Tiempo agotado!';
+      document.getElementById('btn-start').style.display='inline-block';
+      document.getElementById('btn-pause').style.display='none';
+    }
+  },1000);
+}
+
+function pauseTimer(){
+  clearInterval(timerInterval);
+  timerRunning=false;
+  document.getElementById('btn-start').style.display='inline-block';
+  document.getElementById('btn-pause').style.display='none';
+  document.getElementById('timer-status').textContent='⏸ Pausado';
+}
+
+function resetTimer(){
+  clearInterval(timerInterval);
+  timerRunning=false;
+  timerSeconds=timerTotal;
+  updateTimerDisplay();
+  document.getElementById('btn-start').style.display='inline-block';
+  document.getElementById('btn-pause').style.display='none';
+  document.getElementById('timer-status').textContent='Listo para comenzar';
+}
+
+function setTimer(mins,label){
+  resetTimer();
+  timerSeconds=mins*60;
+  timerTotal=mins*60;
+  updateTimerDisplay();
+  document.getElementById('timer-status').textContent='Listo: '+label;
+}
+
+// ═══════════════════════════════════════
+// FLASHCARDS
+// ═══════════════════════════════════════
+const allCards=[
+  {cat:'bio',q:'¿Cuál es la función principal de las mitocondrias?',a:'Producir ATP mediante respiración celular (glucólisis → Krebs → cadena de transporte de electrones). Son la "planta de energía" de la célula.'},
+  {cat:'bio',q:'¿Cuál es la diferencia entre mitosis y meiosis?',a:'Mitosis: 1 célula → 2 células idénticas (diploides), para crecimiento. Meiosis: 1 célula → 4 células haploides (gametos), para reproducción sexual.'},
+  {cat:'bio',q:'¿Qué es el dogma central de la biología molecular?',a:'ADN → (transcripción) → ARNm → (traducción) → Proteína. La información fluye del ADN a la proteína, no al revés.'},
+  {cat:'bio',q:'¿Cuáles son las leyes de Mendel?',a:'1ª: Segregación (los alelos se separan en la meiosis). 2ª: Distribución independiente (genes en cromosomas distintos se heredan independientemente).'},
+  {cat:'bio',q:'¿Qué es la fotosíntesis y dónde ocurre?',a:'Proceso por el que las plantas convierten luz solar + CO₂ + H₂O en glucosa + O₂. Ocurre en los cloroplastos (fase lumínica en tilacoides, ciclo de Calvin en estroma).'},
+  {cat:'bio',q:'¿Qué es el ciclo de Krebs?',a:'Serie de reacciones en la matriz mitocondrial que oxida acetil-CoA produciendo CO₂, NADH, FADH₂ y ATP. Es la 2ª etapa de la respiración celular aerobia.'},
+  {cat:'bio',q:'¿Cuáles son los tipos de ARN y sus funciones?',a:'ARNm (mensajero): lleva la info del ADN al ribosoma. ARNt (transferencia): transporta aminoácidos. ARNr (ribosomal): forma los ribosomas.'},
+  {cat:'bio',q:'¿Qué es un codón de STOP?',a:'Secuencia de tres nucleótidos (UAA, UAG, UGA) que señala el fin de la traducción. No codifica ningún aminoácido.'},
+  {cat:'bio',q:'¿Cuál es la función del sistema linfático?',a:'Retorna líquido intersticial a la sangre, transporta grasas del intestino, y es parte del sistema inmune (produce linfocitos).'},
+  {cat:'bio',q:'¿Qué son los anticuerpos?',a:'Proteínas (inmunoglobulinas) producidas por linfocitos B que reconocen y neutralizan antígenos específicos. Estructura en forma de Y.'},
+  {cat:'quim',q:'¿Qué es el número de oxidación?',a:'Carga hipotética que tendría un átomo si los electrones del enlace se asignaran al átomo más electronegativo. Indica el estado de oxidación.'},
+  {cat:'quim',q:'¿Cuál es la diferencia entre ácido de Arrhenius y de Brønsted-Lowry?',a:'Arrhenius: ácido libera H⁺ en agua. Brønsted-Lowry: ácido es donador de protones (H⁺), base es aceptor. Brønsted es más amplio.'},
+  {cat:'quim',q:'¿Qué es el principio de Le Chatelier?',a:'Si un sistema en equilibrio es perturbado, el equilibrio se desplaza para contrarrestar la perturbación y restablecer el equilibrio.'},
+  {cat:'quim',q:'¿Qué es la isomería óptica?',a:'Compuestos con misma fórmula molecular y estructural pero que son imágenes especulares no superponibles (enantiómeros). Requieren carbono quiral (asimétrico).'},
+  {cat:'quim',q:'¿Cuál es la diferencia entre oxidación y reducción?',a:'Oxidación: pérdida de electrones (aumenta el número de oxidación). Reducción: ganancia de electrones (disminuye el número de oxidación). "OIL RIG".'},
+  {cat:'quim',q:'¿Qué es la entalpía de formación estándar?',a:'Calor absorbido o liberado al formarse 1 mol de sustancia a partir de sus elementos en estado estándar (25°C, 1 atm).'},
+  {cat:'quim',q:'¿Qué indica el pH de una solución?',a:'pH = −log[H⁺]. pH < 7: ácido. pH = 7: neutro. pH > 7: básico. Escala logarítmica: cambio de 1 unidad = factor 10 en [H⁺].'},
+  {cat:'quim',q:'¿Qué es la estequiometría?',a:'Cálculo de las cantidades de reactivos y productos en una reacción química, usando relaciones molares de la ecuación balanceada.'},
+  {cat:'fis',q:'¿Cuáles son las leyes de Newton?',a:'1ª: Inercia (un cuerpo en reposo o MRU sigue así sin fuerza neta). 2ª: F=ma. 3ª: Acción-reacción (fuerzas iguales y opuestas).'},
+  {cat:'fis',q:'¿Qué es el principio de Arquímedes?',a:'Un cuerpo sumergido en un fluido experimenta un empuje hacia arriba igual al peso del fluido desplazado. Explica la flotabilidad.'},
+  {cat:'fis',q:'¿Qué es la energía cinética?',a:'Energía de un objeto en movimiento: Ec = ½mv². Depende de la masa y el cuadrado de la velocidad.'},
+  {cat:'fis',q:'¿Qué es la ley de Coulomb?',a:'La fuerza entre dos cargas eléctricas es proporcional al producto de las cargas e inversamente proporcional al cuadrado de la distancia: F = kq₁q₂/r².'},
+  {cat:'log',q:'Si todos los A son B, y algunos B son C, ¿qué podemos concluir?',a:'Solo que ALGUNOS A podrían ser C (no es necesario). No podemos concluir que "todos los A son C" ni que "ningún A es C".'},
+  {cat:'log',q:'¿Cuál es la negación de "Todos los estudiantes aprobaron"?',a:'"Al menos un estudiante NO aprobó." La negación de "todos" es "al menos uno no". No es "ninguno aprobó".'},
+  {cat:'log',q:'¿Qué es un argumento deductivo válido?',a:'Argumento donde si las premisas son verdaderas, la conclusión NECESARIAMENTE es verdadera. La validez depende de la forma, no del contenido.'},
+  {cat:'log',q:'Si P→Q es verdadero y Q es falso, ¿qué podemos inferir?',a:'P debe ser falso (Modus Tollens). Si "si llueve entonces me mojo" y "no estoy mojado", entonces "no llueve".'},
+];
+
+let filteredCards=[...allCards];
+let currentCardIndex=0;
+let knewCount=0;
+let reviewCount=0;
+let cardFlipped=false;
+
+function filterFlash(){
+  const f=document.getElementById('flash-filter').value;
+  filteredCards=f==='all'?[...allCards]:allCards.filter(c=>c.cat===f);
+  currentCardIndex=0;
+  knewCount=0;reviewCount=0;
+  cardFlipped=false;
+  showCard();
+}
+
+function showCard(){
+  if(filteredCards.length===0)return;
+  const card=filteredCards[currentCardIndex];
+  document.getElementById('flash-q').textContent=card.q;
+  document.getElementById('flash-a').textContent=card.a;
+  document.getElementById('flashcard').classList.remove('flipped');
+  cardFlipped=false;
+  document.getElementById('flash-counter').textContent=`Tarjeta ${currentCardIndex+1} de ${filteredCards.length}`;
+  document.getElementById('knew-count').textContent=knewCount;
+  document.getElementById('review-count').textContent=reviewCount;
+  document.getElementById('remaining-count').textContent=filteredCards.length-currentCardIndex;
+}
+
+function flipCard(){
+  cardFlipped=!cardFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped',cardFlipped);
+}
+
+function nextCard(){
+  if(currentCardIndex<filteredCards.length-1){currentCardIndex++;showCard();}
+}
+
+function prevCard(){
+  if(currentCardIndex>0){currentCardIndex--;showCard();}
+}
+
+function markCard(type){
+  if(type==='knew')knewCount++;
+  else reviewCount++;
+  nextCard();
+}
+
+// ═══════════════════════════════════════
+// QUIZ
+// ═══════════════════════════════════════
+const quizQuestions=[
+  {subject:'🧬 BIOLOGÍA',q:'¿Cuál de las siguientes afirmaciones sobre la meiosis es CORRECTA?',opts:['Produce células somáticas diploides','Ocurre en dos divisiones celulares y produce 4 células haploides','Es idéntica a la mitosis pero más lenta','Solo ocurre en organismos unicelulares','Produce 2 células diploides idénticas'],correct:1,exp:'La meiosis consta de dos divisiones (meiosis I y II) y produce 4 células haploides (gametos). La mitosis produce 2 células diploides idénticas.'},
+  {subject:'⚗️ QUÍMICA',q:'¿Cuál es el pH de una solución con [H⁺] = 1×10⁻⁴ M?',opts:['4','−4','10','0.0001','6'],correct:0,exp:'pH = −log[H⁺] = −log(10⁻⁴) = 4. Como pH < 7, la solución es ácida.'},
+  {subject:'🧬 BIOLOGÍA',q:'¿En qué orgánulo celular se lleva a cabo la síntesis de proteínas?',opts:['Núcleo','Mitocondria','Ribosoma','Aparato de Golgi','Lisosoma'],correct:2,exp:'Los ribosomas son el sitio de la traducción (síntesis de proteínas). Pueden estar libres en el citoplasma o unidos al retículo endoplasmático rugoso.'},
+  {subject:'🧠 RAZONAMIENTO',q:'Si todos los médicos estudian biología, y Ana estudia biología, ¿qué podemos concluir?',opts:['Ana es médica','Ana podría ser médica, pero no necesariamente','Ana no es médica','Ana estudió en Italia','Todos los que estudian biología son médicos'],correct:1,exp:'Este es un error lógico clásico. El hecho de que todos los médicos estudien biología no implica que todos los que estudian biología sean médicos. Ana podría ser bióloga, química, etc.'},
+  {subject:'⚗️ QUÍMICA',q:'¿Cuál de los siguientes es un ejemplo de reacción de oxidación-reducción (redox)?',opts:['NaOH + HCl → NaCl + H₂O','Na + ½Cl₂ → NaCl','Ca(OH)₂ → CaO + H₂O','CO₂ + H₂O → H₂CO₃','NH₃ + H₂O → NH₄⁺ + OH⁻'],correct:1,exp:'Na pierde 1 electrón (se oxida: 0→+1) y Cl gana 1 electrón (se reduce: 0→−1). Las demás reacciones no implican cambio en los estados de oxidación.'},
+  {subject:'🧬 BIOLOGÍA',q:'¿Cuál es el producto final de la glucólisis?',opts:['CO₂ y H₂O','2 moléculas de piruvato y 2 ATP (neto)','Acetil-CoA','NADPH y O₂','Glucosa-6-fosfato'],correct:1,exp:'La glucólisis convierte 1 glucosa en 2 piruvato, con ganancia neta de 2 ATP y 2 NADH. Ocurre en el citoplasma, sin necesidad de oxígeno.'},
+  {subject:'⚡ FÍSICA',q:'Un objeto de 2 kg se mueve a 3 m/s. ¿Cuál es su energía cinética?',opts:['6 J','9 J','3 J','12 J','18 J'],correct:1,exp:'Ec = ½mv² = ½ × 2 × 3² = ½ × 2 × 9 = 9 J.'},
+  {subject:'🧬 BIOLOGÍA',q:'¿Cuál de los siguientes NO es una función del hígado?',opts:['Producción de bilis','Desintoxicación de la sangre','Síntesis de proteínas plasmáticas','Producción de insulina','Almacenamiento de glucógeno'],correct:3,exp:'La insulina es producida por las células beta del páncreas, no por el hígado. El hígado realiza todas las demás funciones mencionadas.'},
+  {subject:'🧠 RAZONAMIENTO',q:'En una secuencia: 2, 6, 18, 54, ___. ¿Cuál es el siguiente número?',opts:['108','162','72','216','128'],correct:1,exp:'Cada término se multiplica por 3: 2×3=6, 6×3=18, 18×3=54, 54×3=162. Es una progresión geométrica con razón 3.'},
+  {subject:'⚗️ QUÍMICA',q:'¿Cuál de los siguientes compuestos tiene enlace iónico?',opts:['H₂O','CO₂','NaCl','CH₄','NH₃'],correct:2,exp:'NaCl (cloruro de sodio) tiene enlace iónico: Na⁺ y Cl⁻. Los demás son compuestos covalentes (no metales enlazados con no metales).'},
+];
+
+let currentQ=0;
+let quizScore=0;
+let answered=false;
+
+function loadQuestion(){
+  if(currentQ>=quizQuestions.length){showQuizResult();return;}
+  const q=quizQuestions[currentQ];
+  document.getElementById('q-num').textContent=`Pregunta ${currentQ+1}/${quizQuestions.length}`;
+  document.getElementById('quiz-prog-fill').style.width=((currentQ+1)/quizQuestions.length*100)+'%';
+  document.getElementById('quiz-subject').textContent=q.subject;
+  document.getElementById('quiz-q-text').textContent=q.q;
+  const optContainer=document.getElementById('quiz-options');
+  optContainer.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='quiz-opt';
+    btn.textContent=`${String.fromCharCode(65+i)}. ${opt}`;
+    btn.onclick=()=>selectAnswer(i,btn);
+    optContainer.appendChild(btn);
+  });
+  document.getElementById('quiz-explanation').className='quiz-explanation';
+  document.getElementById('btn-next-q').className='btn-quiz btn-next-q';
+  answered=false;
+}
+
+function selectAnswer(idx,btn){
+  if(answered)return;
+  answered=true;
+  const q=quizQuestions[currentQ];
+  const opts=document.querySelectorAll('.quiz-opt');
+  opts.forEach(o=>o.style.cursor='default');
+  if(idx===q.correct){
+    btn.classList.add('correct');
+    quizScore++;
+    document.getElementById('quiz-pts').textContent=quizScore;
+  }else{
+    btn.classList.add('wrong');
+    opts[q.correct].classList.add('show-correct');
   }
+  const exp=document.getElementById('quiz-explanation');
+  exp.textContent='💡 '+q.exp;
+  exp.classList.add('show');
+  document.getElementById('btn-next-q').classList.add('show');
+}
+
+function nextQuestion(){
+  currentQ++;
+  loadQuestion();
+}
+
+function showQuizResult(){
+  document.getElementById('quiz-container').style.display='none';
+  const result=document.getElementById('quiz-result');
+  result.classList.add('show');
+  const pct=Math.round((quizScore/quizQuestions.length)*100);
+  document.getElementById('quiz-final-score').textContent=`${quizScore}/${quizQuestions.length}`;
+  let msg='';
+  if(pct>=90)msg='🏆 ¡Excelente! Dominas estos temas.';
+  else if(pct>=70)msg='✅ ¡Muy bien! Sigue practicando.';
+  else if(pct>=50)msg='📚 Bien, pero hay temas que reforzar.';
+  else msg='🔄 Necesitas repasar más. ¡No te rindas!';
+  document.getElementById('quiz-result-msg').textContent=msg;
+  if(currentUser){
+    const d=getUserData(currentUser);
+    d.lastQuizScore=quizScore;
+    d.lastQuizDate=new Date().toLocaleDateString('es-MX');
+    saveUserData(currentUser,d);
+  }
+}
+
+function restartQuiz(){
+  currentQ=0;quizScore=0;answered=false;
+  document.getElementById('quiz-pts').textContent='0';
+  document.getElementById('quiz-container').style.display='block';
+  document.getElementById('quiz-result').classList.remove('show');
+  loadQuestion();
+}
+
+// ═══════════════════════════════════════
+// TRACKER
+// ═══════════════════════════════════════
+const trackerTopics=[
+  {id:'bio-celula',emoji:'🔬',name:'Biología celular'},
+  {id:'bio-genetica',emoji:'🧬',name:'Genética'},
+  {id:'bio-sintesis',emoji:'🔤',name:'Síntesis proteínas'},
+  {id:'bio-metabolismo',emoji:'⚡',name:'Metabolismo'},
+  {id:'bio-fotosintesis',emoji:'🌱',name:'Fotosíntesis'},
+  {id:'bio-fisiologia',emoji:'🫀',name:'Fisiología humana'},
+  {id:'bio-inmune',emoji:'🛡️',name:'Sistema inmune'},
+  {id:'bio-ecologia',emoji:'🌍',name:'Ecología'},
+  {id:'bio-evolucion',emoji:'🦕',name:'Evolución'},
+  {id:'bio-virus',emoji:'🦠',name:'Virus y bacterias'},
+  {id:'quim-atomica',emoji:'⚛️',name:'Química atómica'},
+  {id:'quim-enlaces',emoji:'🔗',name:'Enlaces químicos'},
+  {id:'quim-estequio',emoji:'⚖️',name:'Estequiometría'},
+  {id:'quim-equilibrio',emoji:'⚖️',name:'Equilibrio químico'},
+  {id:'quim-acidos',emoji:'🧪',name:'Ácidos y bases'},
+  {id:'quim-redox',emoji:'🔋',name:'Reacciones redox'},
+  {id:'quim-organica',emoji:'🧬',name:'Química orgánica'},
+  {id:'quim-termoquim',emoji:'🌡️',name:'Termoquímica'},
+  {id:'fis-mecanica',emoji:'🏃',name:'Mecánica'},
+  {id:'fis-fluidos',emoji:'💧',name:'Fluidos'},
+  {id:'fis-termodin',emoji:'🔥',name:'Termodinámica'},
+  {id:'fis-electrica',emoji:'⚡',name:'Electricidad'},
+  {id:'fis-optica',emoji:'🔭',name:'Óptica y ondas'},
+  {id:'mat-algebra',emoji:'📐',name:'Álgebra'},
+  {id:'mat-funciones',emoji:'📈',name:'Funciones'},
+  {id:'mat-trigo',emoji:'📐',name:'Trigonometría'},
+  {id:'mat-geometria',emoji:'📏',name:'Geometría'},
+  {id:'mat-estadistica',emoji:'📊',name:'Estadística'},
+  {id:'log-deductivo',emoji:'🧠',name:'Lógica deductiva'},
+  {id:'log-series',emoji:'🔢',name:'Series y patrones'},
+  {id:'cult-historia',emoji:'📜',name:'Historia'},
+  {id:'cult-ciencia',emoji:'🔬',name:'Ciencia y tecnología'},
+  {id:'cult-arte',emoji:'🎨',name:'Arte y literatura'},
+  {id:'cult-filosofia',emoji:'💭',name:'Filosofía'},
+  {id:'cult-bioetica',emoji:'⚕️',name:'Bioética'},
+];
+
+function initTracker(){
+  const grid=document.getElementById('tracker-grid');
+  grid.innerHTML='';
+  const d=getUserData(currentUser);
+  const states=d.tracker||{};
+  let doneCount=0;let inpCount=0;
+  trackerTopics.forEach(t=>{
+    const state=states[t.id]||'none';
+    if(state==='done')doneCount++;
+    if(state==='in-progress')inpCount++;
+    const div=document.createElement('div');
+    div.className='tracker-item'+(state==='done'?' done':state==='in-progress'?' in-progress':'');
+    div.id='tracker-'+t.id;
+    div.innerHTML=`<span class="tracker-emoji">${t.emoji}</span><span class="tracker-name">${t.name}</span><span class="tracker-status">${state==='done'?'Completado':state==='in-progress'?'En progreso':'Pendiente'}</span><span class="tracker-check">✓</span>`;
+    div.onclick=()=>cycleTracker(t.id);
+    grid.appendChild(div);
+  });
+  updateTrackerSummary(doneCount,inpCount);
+}
+
+function cycleTracker(id){
+  const d=getUserData(currentUser);
+  const states=d.tracker||{};
+  const cur=states[id]||'none';
+  const next=cur==='none'?'in-progress':cur==='in-progress'?'done':'none';
+  states[id]=next;
+  d.tracker=states;
+  let doneCount=0;let inpCount=0;
+  Object.values(states).forEach(s=>{if(s==='done')doneCount++;if(s==='in-progress')inpCount++;});
+  d.trackerDone=doneCount;
+  d.trackerTotal=trackerTopics.length;
+  saveUserData(currentUser,d);
+  const el=document.getElementById('tracker-'+id);
+  el.className='tracker-item'+(next==='done'?' done':next==='in-progress'?' in-progress':'');
+  el.querySelector('.tracker-status').textContent=next==='done'?'Completado':next==='in-progress'?'En progreso':'Pendiente';
+  updateTrackerSummary(doneCount,inpCount);
+}
+
+function updateTrackerSummary(done,inp){
+  const total=trackerTopics.length;
+  const pct=Math.round((done/total)*100);
+  document.getElementById('tracker-big-fill').style.width=pct+'%';
+  document.getElementById('tracker-pct').textContent=pct+'%';
+  document.getElementById('tracker-counts').textContent=`${done} completados · ${inp} en progreso`;
+}
+
+// ═══════════════════════════════════════
+// CHECKLIST
+// ═══════════════════════════════════════
+const checklistData=[
+  {month:'Mayo 2026',phase:'phase-1',tasks:['Hacer examen diagnóstico completo sin preparación','Crear cuenta en Anki y descargar decks IMAT','Leer el syllabus oficial del MIUR completo','Iniciar Biología celular: célula, membrana, orgánulos','Unirse a r/IMAT en Reddit','Crear cuenta en universitaly.it']},
+  {month:'Junio 2026',phase:'phase-1',tasks:['Estudiar división celular: mitosis y meiosis','Estudiar ADN: estructura y replicación','Iniciar Química: estructura atómica y tabla periódica','Practicar 20 min diarios de razonamiento lógico','Completar 50 tarjetas Anki diarias','Hacer mini-simulacro de Biología (10 preguntas)']},
+  {month:'Julio 2026',phase:'phase-1',tasks:['Estudiar genética mendeliana','Estudiar síntesis de proteínas (transcripción y traducción)','Estequiometría y cálculos de mol','Soluciones y equilibrio químico','Primer mini-simulacro de 20 preguntas (Bio+Quím)','Registrar errores en cuaderno de errores']},
+  {month:'Agosto 2026',phase:'phase-1',tasks:['Sistemas circulatorio, nervioso y endocrino','Sistemas digestivo, respiratorio y excretor','Ácidos, bases y pH','Química orgánica básica: alcanos, alquenos, grupos funcionales','Historia siglo XX: 30 min/semana','Repaso de Fase 1 con ejercicios IMAT pasados']},
+  {month:'Septiembre 2026',phase:'phase-2',tasks:['Glucólisis, ciclo de Krebs, cadena respiratoria','Fermentación láctica y alcohólica','Física: cinemática y dinámica (leyes de Newton)','Trabajo, energía y conservación de energía','Reacciones redox y electroquímica','Simulacro completo #1 — registrar puntaje']},
+  {month:'Octubre 2026',phase:'phase-2',tasks:['Biotecnología: PCR, electroforesis','Evolución e inmunología','Física: fluidos, termodinámica y óptica','Matemáticas: álgebra, funciones y trigonometría','Análisis detallado de errores del simulacro #1','Simulacro completo #2']},
+  {month:'Noviembre 2026',phase:'phase-2',tasks:['Química orgánica avanzada: isomería y reacciones','Ecología, fotosíntesis, virus y bacterias','Cultura General: filosofía, arte y literatura (30 min/semana)','Cinética química y termoquímica','Simulacro completo #3','Identificar los 3 temas más débiles']},
+  {month:'Diciembre 2026',phase:'phase-2',tasks:['Repaso sistemático de todos los temas de Fases 1 y 2','Matemáticas: probabilidad, estadística y geometría analítica','Revisión de errores recurrentes en simulacros','Simulacro completo #4','Descanso navideño con repaso ligero (Anki mínimo)','Planear estrategia de Fase 3']},
+  {month:'Enero 2027',phase:'phase-3',tasks:['Un simulacro completo cada semana','Análisis detallado de cada error del simulacro','Repaso de Biología: anatomía + fisiología integrada','Cultura General: actualidad internacional y bioética','Simulacros #5 y #6','Subir puntaje mínimo 2 pts respecto a diciembre']},
+  {month:'Febrero 2027',phase:'phase-3',tasks:['Practicar Química cronometrada: 12 min para 12 preguntas','Practicar Física cronometrada: 8 min para 4 preguntas','Dominar cálculos sin calculadora','Simulacros #7 y #8','Cultura General: repaso de historia siglos XIX-XX','Refuerzo de los 3 temas más débiles identificados']},
+  {month:'Marzo 2027',phase:'phase-3',tasks:['45 min diarios de razonamiento lógico','Análisis de argumentos: premisas y conclusiones','Preguntas de cultura general de exámenes IMAT 2012-2024','Simulacro completo #9','Revisión de errores recurrentes','Verificar documentos para Universitaly']},
+  {month:'Abril 2027',phase:'phase-3',tasks:['Crear fichas resumen de 1 página por sección','Verificar que documentos estén apostillados','Confirmar preinscripción en Universitaly','Simulacros #10 y #11','Medir evolución vs. simulacro de enero','Repasar fórmulas clave de Física y Mat.']},
+  {month:'Mayo 2027',phase:'phase-3',tasks:['Cronometrar sección por sección para encontrar ritmo ideal','Practicar técnica "skip and return" para preguntas difíciles','Reforzar los 5 temas más débiles','Simulacros #12 y #13','Revisar Declaración de Valor con Embajada','Preparar lista de alojamientos en Ancona']},
+  {month:'Junio 2027',phase:'phase-4',tasks:['2 simulacros completos por semana en condiciones reales','Solo repaso de contenido — nada nuevo','Anki de mantenimiento: 30 tarjetas/día','Revisar errores de simulacros anteriores','Buscar vuelo a Italia (Ancona o Roma+tren)','Confirmar alojamiento en Ancona']},
+  {month:'Julio 2027',phase:'phase-4',tasks:['2 simulacros semanales + análisis detallado','Elevar puntaje 2-3 puntos adicionales','Estudiar errores recurrentes en Bio y Quím','Confirmar registro UNIVPM para el IMAT','Preparar documentos de viaje','Practicar con exámenes IMAT 2022, 2023 y 2024']},
+  {month:'Agosto 2027',phase:'phase-4',tasks:['1 simulacro por semana — no sobrecargar','Repaso de fichas y fórmulas clave','Practicar razonamiento lógico 15 min/día','Viajar a Italia (llegar antes del 28 de agosto)','Visitar campus UNIVPM y el centro de examen','Preparar kit del día del examen (pasaporte, lápiz 2B, agua)']},
+];
+
+function initChecklist(){
+  const container=document.getElementById('checklist-container');
+  container.innerHTML='';
+  const d=getUserData(currentUser);
+  const checks=d.checklist||{};
+  checklistData.forEach((month,mi)=>{
+    let doneInMonth=0;
+    const total=month.tasks.length;
+    month.tasks.forEach((task,ti)=>{
+      if(checks[`${mi}-${ti}`])doneInMonth++;
+    });
+    const div=document.createElement('div');
+    div.className='checklist-month';
+    const pct=Math.round((doneInMonth/total)*100);
+    div.innerHTML=`
+      <div class="checklist-month-header" onclick="toggleChecklist(this)">
+        <span class="checklist-month-title">${month.month}</span>
+        <span class="checklist-month-prog">${doneInMonth}/${total} · ${pct}%</span>
+      </div>
+      <div class="checklist-month-bar"><div class="checklist-month-fill" style="width:${pct}%"></div></div>
+      <div class="checklist-items" style="display:none">
+        ${month.tasks.map((task,ti)=>`
+          <div class="check-item${checks[`${mi}-${ti}`]?' done':''}" id="checkitem-${mi}-${ti}">
+            <input type="checkbox" id="check-${mi}-${ti}" ${checks[`${mi}-${ti}`]?'checked':''} onchange="toggleCheck(${mi},${ti})">
+            <label for="check-${mi}-${ti}">${task}</label>
+          </div>
+        `).join('')}
+      </div>`;
+    container.appendChild(div);
+  });
+}
+
+function toggleChecklist(header){
+  const items=header.parentElement.querySelector('.checklist-items');
+  items.style.display=items.style.display==='none'?'block':'none';
+}
+
+function toggleCheck(mi,ti){
+  const d=getUserData(currentUser);
+  const checks=d.checklist||{};
+  checks[`${mi}-${ti}`]=document.getElementById(`check-${mi}-${ti}`).checked;
+  d.checklist=checks;
+  saveUserData(currentUser,d);
+  const item=document.getElementById(`checkitem-${mi}-${ti}`);
+  item.classList.toggle('done',checks[`${mi}-${ti}`]);
+  initChecklist();
+}
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+function initAll(){
+  loadQuestion();
+  showCard();
+  initTracker();
+  initChecklist();
+  updateTimerDisplay();
+}
+
+// Iniciar mostrando pantalla de perfil
+window.onload=()=>{
+  renderProfileCards();
+  document.getElementById('new-profile-name').addEventListener('keydown',e=>{
+    if(e.key==='Enter')createProfile();
+  });
+};
 </script>
 </body>
 </html>
